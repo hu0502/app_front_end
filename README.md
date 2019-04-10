@@ -17,5 +17,11 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 实现功能
+### 用户模块
+### 任务模块
+### 待完成
+#### 短信注册
+#### mint-ui 下拉刷新请求不同接口更新任务状态
+#### 优化CSS
+#### 增加任务搜索功能
