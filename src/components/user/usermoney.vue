@@ -24,9 +24,9 @@
     padding: 0;margin: 0;
 }
 .mymoneya{
-    height: 70px ;
+    height: 75px ;
     width: 100%;
-    line-height: 70px;
+    line-height: 75px;
     font-size: 18px;
 }
 
@@ -35,22 +35,22 @@
     color: #fff;
 }
 .usermoney_bg{
-    /* background-color: #46b1b8; */
+    background-color: #46b1b8 !important;
     margin-top: -20px;
 }
 .usermoney_bg div{
     display: inline-block;
 }
 .usermoney_div1{
-    padding:70px 30px 70px 0;
+    padding:40px 30px 40px 0;
 }
 .usermoney-icon{
     width: 38px;height: 38px;
 }
 .usermoney_div2{
-    padding:70px 30px 80px 0;
+    padding:40px 30px 40px 0;
     font-size: 40px;
-    color: #545454;
+    color: #fff;
 }
 #usermoney_button{
     display: block;

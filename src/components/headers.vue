@@ -1,12 +1,10 @@
 <template>
     <div class="headers">
-      
-      
         <!-- <mt-header> -->
-            <img src="../../static/logo(white).png" class="homelogo">
-            <router-link to="/personalcenter">
+           <!--  <img src="../../static/logo(white).png" class="homelogo"> -->
+            <!-- <router-link to="/personalcenter">
                 <i class="iconfont iconwode1 icon-mine"></i>
-            </router-link>
+            </router-link> -->
             <mt-search v-model="value" placeholder="搜索任务">
                 <!-- <mt-cell
                     v-for="item in result"
@@ -14,7 +12,6 @@
                     :title="item.title"
                     :value="item.value">
                 </mt-cell> -->
-                
             </mt-search>
         <!-- </mt-header> -->
     </div>
@@ -35,54 +32,45 @@ export default {
 
 <style>
 .headers{
-    height: 55px;
+    height: 75px;
     width: 100%;
     background-color: #46b1b8;
 }
 /* 重写搜索框 */
 .mint-searchbar{
-    background-color:none !important;
-    width: 70%;
+    background-color:#46b1b8 !important;
+    width: 80%;
     margin: auto;
-    /* top: 20%; */
-    margin-top: 30px;
     padding: 0;
-    height: 25px;
+    height: 100%;
+    
 }
 .mint-searchbar-inner{
-    height: 25px; margin: auto;
+    height: 35px;
+    opacity: .9;
+    border: 1px solid #fff;
 }
 .mint-searchbar-cancel{
-    display: none !important;
+    display: none;
 }
 /* icon搜索 */
 .mint-searchbar-inner .mintui-search{
-    font-size: 16px;
+    font-size: 22px;
     color: #000;
+    margin-top: 2px;
 }
 /* icon后的input */
 .mint-searchbar-core{
     padding-left: 5px;
+    font-size: 16px;
+    padding-top: 2px;
+    line-height: 16px;
 }
 .mint-search{
-   
-    height: 0vh !important;
-     height: 100%;
+    height: 75px;
+    line-height: 75px;
 }
-.icon-mine{
-    color: #fff;
-    font-size: 35px;
-    position: absolute;
-    right: 3%;
-    top: 9px;
-}
-.homelogo{
-    position: absolute;
-    width: 35px;height: 35px;
-    left: 13px;
-    top: 10px;
-    color: #fff;
-}
+
 </style>
 
 

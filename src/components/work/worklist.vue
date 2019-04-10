@@ -8,8 +8,11 @@
       <li v-for="(index,val) in tasklist" :key="val">
         <p>
           <span class="worklist-username">{{index.title}}</span>
-          <el-tag type="success" class="icontype label2">{{index.label}}</el-tag>
-          <el-tag type="danger" class="icontype label3">{{index.mission_statu}}</el-tag>
+          <el-tag type="primary" class="icontype label2">{{index.label}}</el-tag>
+          <el-tag v-if="index.mission_statu===0" type="danger" class="icontype label3">未接单</el-tag>
+          <el-tag v-if="index.mission_statu===1" type="primary" class="icontype label3">进行中</el-tag>
+          <el-tag v-if="index.mission_statu===2" type="success" class="icontype label3">已完成</el-tag>
+          <el-tag v-if="index.mission_statu===3" type="danger" class="icontype label3">已超时</el-tag>
           <span class="worklist-money">
             <i class="iconfont icontest"></i>
             <span>{{index.score}}</span>
@@ -43,13 +46,13 @@
   color: #666666;
 }
 .mint-header {
-  background-color: #46b1b8;
-  height: 55px;
+  background-color: #46b1b8 !important;
+  height: 75px;
   font-size: 16px;
-  line-height: 55px;
+  line-height: 75px;
 }
 .mint-header-title {
-  line-height: 55px;
+  line-height: 75px;
   margin: 0;
 }
 /* 任务列表 */
@@ -129,6 +132,8 @@
 <script>
 import headers from "../headers";
 import axios from "axios";
+import qs from "qs";
+
 export default {
   data() {
     return {
@@ -143,7 +148,7 @@ export default {
       axios.get(url).then(res => {
         if (res.status === 200) {
           if (res.data.status === 0) {
-            that.tasklist = res.data.data.reverse();
+            that.tasklist = res.data.data.reverse()
             for (let i = 0; i < that.tasklist.length; i++) {
               that.tasklist[i].create_time = new Date(
                 that.tasklist[i].create_time
@@ -151,14 +156,44 @@ export default {
               that.tasklist[i].validtime = new Date(
                 that.tasklist[i].validtime
               ).format("yyyy-MM-dd hh:mm");
-              if (that.tasklist[i].mission_statu === 0) {
-                that.tasklist[i].mission_statu = "未接单";
-              } 
-              if(that.tasklist[i].times == null){
-                that.tasklist[i].times = 0;
-              }
+              if(that.tasklist[i].times == null) that.tasklist[i].times = 0;
             }
-            console.log(that.tasklist);
+          } else {
+            that.$message({
+              message: res.data.msg,
+              type: "error"
+            });
+            return false;
+          }
+        } else {
+          that.$message({
+            message: res.data.msg,
+            type: "error"
+          });
+          return false;
+        }
+      });
+    },
+    getRecommendTask(){
+      var that = this;
+      var Data = {
+        user_id : that.$store.state.user_id
+      }
+      var url = "http://127.0.0.1:3000/api/mission/recommend";
+      //var url = "http://39.107.97.203:3000/api/mission/recommend";
+      axios.post(url,qs.stringify(Data)).then(res => {
+        if (res.status === 200) {
+          if (res.data.status === 0) {
+            that.tasklist = res.data.data;
+            for (let i = 0; i < that.tasklist.length; i++) {
+              that.tasklist[i].create_time = new Date(
+                that.tasklist[i].create_time
+              ).format("yyyy-MM-dd hh:mm");
+              that.tasklist[i].validtime = new Date(
+                that.tasklist[i].validtime
+              ).format("yyyy-MM-dd hh:mm");
+              if(that.tasklist[i].times == null) that.tasklist[i].times = 0;
+            }
           } else {
             that.$message({
               message: res.data.msg,
@@ -180,7 +215,13 @@ export default {
     "v-headers": headers
   },
   mounted() {
-    this.getAllTask();
+    if(this.$store.state.user_id){
+      this.getRecommendTask();
+    }else{
+      this.getAllTask();
+      console.log("未登录")
+    }
+      
   }
 };
 </script>

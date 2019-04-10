@@ -8,7 +8,7 @@
       <li v-for="(index,val) in tasklist" :key="val">
         <p>
           <span class="worklist-username">{{index.title}}</span>
-          <el-tag type="success" class="icontype label2">{{index.label}}</el-tag>
+          <el-tag type="primary" class="icontype label2">{{index.label}}</el-tag>
           <el-tag v-if="index.mission_statu===0" type="danger" class="icontype label3">未接单</el-tag>
           <el-tag v-if="index.mission_statu===1" type="primary" class="icontype label3">进行中</el-tag>
           <el-tag v-if="index.mission_statu===2" type="success" class="icontype label3">已完成</el-tag>
@@ -46,13 +46,13 @@
   margin: 0;
 }
 .mint-header {
-  background-color: #46b1b8;
-  height: 65px;
+  background-color:#46b1b8 !important;
+  height: 75px;
   font-size: 16px;
-  line-height: 65px;
+  line-height: 75px;
 }
 .mint-header-title {
-  line-height: 65px;
+  line-height: 75px;
   margin: 0;
 }
 /* 任务列表 */

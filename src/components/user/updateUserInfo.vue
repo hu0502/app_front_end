@@ -47,10 +47,11 @@
   color: #fff;
 }
 .personal {
-  height: 70px;
+  height: 75px;
   width: 100%;
   line-height: 70px;
   font-size: 18px;
+  background-color:#46b1b8 !important;
 }
 .update{
     margin: auto;
@@ -59,7 +60,6 @@
 .demo{
      margin: auto;
      width: 80%;
-   
 }
 </style>
 <script>
@@ -182,7 +182,6 @@ export default {
             sex: _this.updateForm.sex,
             image: null
           };
-         console.log(Data)
          // var url = "http://39.107.97.203:8080/api/OfferReward/User/Update";
           var url = "http://127.0.0.1:3000/api/users/update";
            //var url = "http://39.107.97.203:3000/api/users/update";
@@ -191,7 +190,6 @@ export default {
           });
           instance.post(url,qs.stringify(Data)).then(res => {
             if (res.status === 200) {
-              console.log(res)
               if (res.data.status === 0) {
                 var apiData = res.data.data;
                 _this.$message({

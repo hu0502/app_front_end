@@ -124,20 +124,23 @@
           <ul class="workul-lastest">
            <li v-for="(index,val) in tasklist" :key="val" >
               <p>
-                <span class="worklist-username">{{index.title}}</span>
-                <el-tag type="success"  class="icontype1 label22" >{{index.label}}</el-tag>
-                <el-tag type="danger" class="icontype1 label33" >{{index.mission_statu}}</el-tag>
-                <span class="worklist-money">
+                <span class="workul-username">{{index.title}}</span>
+                <el-tag type="primary"  class="icontype1 label22" >{{index.label}}</el-tag>
+                <el-tag v-if="index.mission_statu===0" type="danger" class="icontype1 label33">未接单</el-tag>
+                <el-tag v-if="index.mission_statu===1" type="primary" class="icontype1 label33">进行中</el-tag>
+                <el-tag v-if="index.mission_statu===2" type="success" class="icontype1 label33">已完成</el-tag>
+                <el-tag v-if="index.mission_statu===3" type="danger" class="icontype1 label33">已超时</el-tag>
+                <span class="workul-money">
                   <i class="iconfont icontest"></i>
                   <span>{{index.score}}</span>
                 </span>
               </p>
-              <p class="worklist-content1">
+              <p class="workul-content1">
                 <span>雇主：{{index.master_name }}</span>
-                <span style="left: 82%;position: absolute;">浏览：{{index.times }}</span>
+                <span style="left: 79%;position: absolute;">浏览：{{index.times }}</span>
               </p>
-              <p class="worklist-content1">发布于：{{index.create_time}}</p>
-              <p class="worklist-content1">有效期：{{index.validtime}}</p>
+              <p class="workul-content1">发布于：{{index.create_time}}</p>
+              <p class="workul-content1">有效期：{{index.validtime}}</p>
               <router-link :to="{
                 path: '/workdetails',
                 query: {
@@ -176,8 +179,8 @@ import headers from "./headers";
 import partone from "./square/partone";
 import message from "./message/message";
 import user from "./user/user";
-import axios from 'axios'
-
+import axios from 'axios';
+import qs from "qs";
 export default {
   name: "home",
   data() {
@@ -187,43 +190,70 @@ export default {
     };
   },
   methods: {
-   getAllTask(){
+    getAllTask(){
         var that = this;
-        //var url = 'http://39.107.97.203:8080/api/OfferReward/Task/AcceptableTask'
         var url = "http://127.0.0.1:3000/api/mission/unaccpetedlist";
         //var url = "http://39.107.97.203:3000/api/mission/unaccpetedlist";
         axios.get(url).then(res =>{
             if (res.status === 200){
                 if(res.data.status===0){
                  var taskApi = res.data.data;
-                 that.tasklist = taskApi.reverse().slice(0,1);
-                for(let i=0;i<that.tasklist.length; i++){
-                     that.tasklist[i].create_time = new Date(that.tasklist[i].create_time).format("yyyy-MM-dd hh:mm")
-                     that.tasklist[i].validtime = new Date(that.tasklist[i].validtime).format("yyyy-MM-dd hh:mm")
-                     
-                      if(that.tasklist[i].mission_statu===0){
-                        that.tasklist[i].mission_statu="未接单"
-                      }else if(that.tasklist[i].mission_statu===1){
-                        that.tasklist[i].mission_statu="进行中"
-                      }else{
-                        that.tasklist[i].mission_statu="已完成"
-                      }
+                 that.tasklist = taskApi.reverse().slice(0,2);
+                  for(let i=0;i<that.tasklist.length; i++){
+                      that.tasklist[i].create_time = new Date(that.tasklist[i].create_time).format("yyyy-MM-dd hh:mm")
+                      that.tasklist[i].validtime = new Date(that.tasklist[i].validtime).format("yyyy-MM-dd hh:mm")
                       if(that.tasklist[i].times == null) that.tasklist[i].times = 0;
                   }
-                
                 }else{
                   that.$message({
                       message: res.data.msg,
                       type: 'error'
                   })
-                    return false;
-                  }
-                }else{
                   return false;
                 }
-          })
+            }else{
+              return false;
+            }
+        })
       },
+    getRecommendTask(){
+      var that = this;
+      var Data = {
+        user_id : that.$store.state.user_id
+      }
+      var url = "http://127.0.0.1:3000/api/mission/recommend";
+      //var url = "http://39.107.97.203:3000/api/mission/recommend";
+      axios.post(url,qs.stringify(Data)).then(res => {
+        if (res.status === 200) {
+          if (res.data.status === 0) {
+            that.tasklist = res.data.data.slice(0,2);
+            for (let i = 0; i < that.tasklist.length; i++) {
+              that.tasklist[i].create_time = new Date(
+                that.tasklist[i].create_time
+              ).format("yyyy-MM-dd hh:mm");
+              that.tasklist[i].validtime = new Date(
+                that.tasklist[i].validtime
+              ).format("yyyy-MM-dd hh:mm");
+              if(that.tasklist[i].times == null) that.tasklist[i].times = 0;
+            }
+          } else {
+            that.$message({
+              message: res.data.msg,
+              type: "error"
+            });
+            return false;
+          }
+        } else {
+          that.$message({
+            message: res.data.msg,
+            type: "error"
+          });
+          return false;
+        }
+      });
+    },
   },
+   
   components: {
     "v-headers": headers,
     "v-partone": partone, //【广场】
@@ -233,15 +263,18 @@ export default {
   },
   
  mounted() {
-      this.getAllTask();
+      if(this.$store.state.user_id){
+      this.getRecommendTask();
+      }else{
+        this.getAllTask();
+      }
     }
 };
 </script>
 
 
 <style scoped>
-ul,
-li {
+ul,li {
   list-style: none;
 }
 * {
@@ -251,11 +284,9 @@ li {
 /* 底部选项 */
 .mint-tabbar {
   height: 55px;
-  /* background-position: center; */
   width: 100%;
   padding-top: 10px;
 }
-
 /* 底部图标 */
 .mint-tab-item-label {
   color: #a9a9a9;
@@ -281,7 +312,7 @@ li {
 }
 /* 轮播图大小位置 */
 .mint-swipe {
-  height: 225px;
+  height: 210px;
   width: 100%;
 }
 .mint-swipe-items-wrap > div {
@@ -305,7 +336,8 @@ li {
   height: 50px;
   line-height: 50px;
   text-align: left;
-  padding-left: 25px;
+  padding-left: 20px;
+  margin-top:10px;
 }
 .title span {
   color: #868585;
@@ -329,6 +361,7 @@ li {
 .workul li {
   display: inline-block;
   padding: 0 20px;
+  margin-bottom:10px;
 }
 .workul li p:last-child {
   margin-top: -5px;
@@ -391,69 +424,21 @@ li {
 }
 
 /* 用户名 */
-.username {
+.workul-username {
   float: left;
-  margin-left: 8px;
+  padding-left: 5%;
   color: #000;
   font-weight: bold;
   font-size: 16px;
 }
 /* 悬赏金币位置 */
-.money {
-  right: 2%;
+.workul-money {
+  left: 85%;
   position: absolute;
 }
 /* 任务标题 */
-.workul-content {
-  padding-left: 65px;
-  text-align: left;
-}
-/* 补充一 */
-
-
-/* 任务列表 */
-.workul-worklist {
-  border-bottom: 1px solid #eee;
-  padding: 5px 0;
-  display: inline-block;
-  width: 100%;
-}
-.workul-worklist li {
-  border-bottom: 1px solid #eee;
-  margin-top: 10px;
-}
-.workul-worklist li:last-child {
-  margin-bottom: 55px;
-}
-.worklist-userlogo {
-  border-radius: 50%;
-  float: left;
-  margin-left: 15px;
-  margin-top: 2px;
-  width: 35px;
-  height: 35px;
-}
-.workul-worklist p {
-  height: 40px;
-  line-height: 40px;
-}
-
-/* 用户名 */
-.worklist-username {
-  float: left;
-  margin-left: 37px;
-  color: #000;
-  font-weight: bold;
-  font-size: 16px;
-}
-/* 悬赏金币位置 */
-.worklist-money {
-  left: 87%;
-  position: absolute;
-}
-/* 任务标题 */
-.worklist-content1 {
-  padding-left: 37px;
+.workul-content1 {
+  padding-left: 5%;
   text-align: left;
   color: #545454;
 }

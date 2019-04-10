@@ -234,8 +234,8 @@ export default {
         var Athis = this;
         Athis.isDisable = true;
        // var url = 'http://39.107.97.203:8080/api/OfferReward/Task/SubmitTask'
-        //var url = 'http://127.0.0.1:3000/api/mission/achieve'
-        var url = 'http://39.107.97.203:3000/api/mission/achieve'
+        var url = 'http://127.0.0.1:3000/api/mission/achieve'
+        //var url = 'http://39.107.97.203:3000/api/mission/achieve'
         var data = {
           mission_id :  Athis.$route.query.mission_id,
           user_id :  Athis.$store.state.user_id
@@ -272,8 +272,8 @@ export default {
             mission_id :  that.$route.query.mission_id,
             user_id :  that.$store.state.user_id
         }
-        //var url = 'http://127.0.0.1:3000/api/mission/accept'
-        var url = 'http://39.107.97.203:3000/api/mission/accept'
+        var url = 'http://127.0.0.1:3000/api/mission/accept'
+        //var url = 'http://39.107.97.203:3000/api/mission/accept'
         axios.post(url,qs.stringify(Data))
         .then(res =>{
           if (res.status === 200){

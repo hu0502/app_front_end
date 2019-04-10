@@ -6,7 +6,7 @@
       </mt-button>
     </mt-header>
     <div class="personalcontent">
-      <p>用户ID<span>{{this.$store.state.user_id}}</span></p>
+     <!--  <p>用户ID<span>{{this.$store.state.user_id}}</span></p> -->
       <p>用户名<span>{{this.$store.state.user_name}}</span></p>
       <p>注册时间<span>{{this.userInfo.createtime}}</span></p>
       <p>联系方式<span>{{this.userInfo.tel}}</span></p>
@@ -23,10 +23,11 @@
 </template>
 <style>
 .personal {
-  height: 70px;
+  height: 75px;
   width: 100%;
-  line-height: 70px;
+  line-height: 75px;
   font-size: 18px;
+  background-color:#46b1b8 !important;
 }
 .personallink {
   text-decoration: none;
@@ -104,7 +105,7 @@ export default {
               that.userInfo.u_class = userInfoApi.u_class;
               that.userInfo.sex = userInfoApi.sex;
               that.userInfo.createtime = new Date(userInfoApi.createtime).format(
-                "yyyy-MM-dd hh:mm:ss"
+                "yyyy-MM-dd"
               );
               that.userInfo.tel = userInfoApi.tel;
               that.userInfo.score = userInfoApi.score;
