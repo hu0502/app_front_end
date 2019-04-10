@@ -18,7 +18,10 @@
             <span>{{index.score}}</span>
           </span>
         </p>
-        <p class="worklist-content">雇主：{{index.master_name }}</p>
+        <p class="worklist-content">
+          <span>雇主：{{index.master_name }}</span>
+          <span style="left: 81.5%;position: absolute;">浏览：{{index.times }}</span>
+        </p>
         <p class="worklist-content">发布于：{{index.create_time}}</p>
         <p class="worklist-content">有效期：{{index.validtime}}</p>
         <router-link
@@ -152,8 +155,8 @@ export default {
       var data = {
         user_id: that.$store.state.user_id
       };
-      //var url = "http://127.0.0.1:3000/api/users/myMission";
-      var url = "http://39.107.97.203:3000/api/users/myMission";
+      var url = "http://127.0.0.1:3000/api/users/myMission";
+     // var url = "http://39.107.97.203:3000/api/users/myMission";
       var instance = axios.create({
         headers: {
           "content-type": "application/x-www-form-urlencoded;charset=UTF-8"
@@ -170,6 +173,7 @@ export default {
               that.tasklist[i].validtime = new Date(
                 that.tasklist[i].validtime
               ).format("yyyy-MM-dd hh:mm");
+               if(that.tasklist[i].times == null) that.tasklist[i].times = 0;
             }
           } else {
             that.$message({

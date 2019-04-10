@@ -15,7 +15,10 @@
             <span>{{index.score}}</span>
           </span>
         </p>
-        <p class="worklist-content">雇主：{{index.master_name }}</p>
+        <p class="worklist-content">
+          <span>雇主：{{index.master_name }}</span>
+          <span style="left: 81%;position: absolute;">浏览：{{index.times }}</span>  
+        </p>
         <p class="worklist-content">发布于：{{index.create_time}}</p>
         <p class="worklist-content">有效期：{{index.validtime}}</p>
         <router-link
@@ -135,8 +138,8 @@ export default {
   methods: {
     getAllTask() {
       var that = this;
-      //var url = "http://127.0.0.1:3000/api/mission/unaccpetedlist";
-      var url = "http://39.107.97.203:3000/api/mission/unaccpetedlist";
+      var url = "http://127.0.0.1:3000/api/mission/unaccpetedlist";
+      //var url = "http://39.107.97.203:3000/api/mission/unaccpetedlist";
       axios.get(url).then(res => {
         if (res.status === 200) {
           if (res.data.status === 0) {
@@ -151,11 +154,9 @@ export default {
               if (that.tasklist[i].mission_statu === 0) {
                 that.tasklist[i].mission_statu = "未接单";
               } 
-             /*  else if (that.tasklist[i].mission_statu === 1) {
-                that.tasklist[i].mission_statu = "进行中";
-              } else {
-                that.tasklist[i].mission_statu = "已完成";
-              } */
+              if(that.tasklist[i].times == null){
+                that.tasklist[i].times = 0;
+              }
             }
             console.log(that.tasklist);
           } else {

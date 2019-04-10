@@ -21,7 +21,9 @@
             <p v-if="this.taskDetailForm.mission_statu===2">任务状态：<el-tag type="success" class="label2">已完成</el-tag></p>
             <p v-if="this.taskDetailForm.mission_statu===3">任务状态：<el-tag type="danger" class="label2">已超时</el-tag></p>
             <p>雇主悬赏积分：<i class="iconfont icontest aaaaicon"></i> <span> {{this.taskDetailForm.score}}</span></p>
-            <p>雇主：<span>{{this.taskDetailForm.master_name}}</span></p>
+            <p>雇主：<span>{{this.taskDetailForm.master_name}}</span>
+        
+            </p>
             <p>发布于：<span>{{this.taskDetailForm.create_time}}</span></p>
             <p>有效期至：<span>{{this.taskDetailForm.validtime}}</span></p>
             <div v-if="this.slaveInfo===1">
@@ -295,24 +297,21 @@ export default {
       //获取当前任务详情
       getTask(){
         var that = this;
-        //var url = 'http://127.0.0.1:3000/api/mission/details'
-        var url = 'http://39.107.97.203:3000/api/mission/details'
+        var url = 'http://127.0.0.1:3000/api/mission/details'
+       // var url = 'http://39.107.97.203:3000/api/mission/details'
         var instance = axios.create({ headers: 
               {'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'}
           });
         var Data = {
             mission_id :  that.$route.query.mission_id,
+            user_id : that.$store.state.user_id
         }
+        console.log(Data)
         instance.post(url,qs.stringify(Data))
         .then(res =>{
             if (res.status === 200){
                 if(res.data.status===0){
                 var taskApi = res.data.data;
-                console.log(taskApi)
-               /*  that.user_list = taskApi.user_list;
-                 for(let i=0;i < that.user_list.length; i++){
-                    that.user_list.accept_time=new Date(taskApi.user_list.accept_time).format("yyyy-MM-dd hh:mm");
-                  } */
                 that.taskDetailForm.mission_order=taskApi.mission_order;
                 that.taskDetailForm.title=taskApi.title;
                 that.taskDetailForm.description=taskApi.description;

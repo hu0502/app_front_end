@@ -20,7 +20,10 @@
             <span>{{index.score}}</span>
           </span>
         </p>
-        <p class="worklist-content">雇主：{{index.master_name }}</p>
+        <p class="worklist-content">
+            <span>雇主：{{index.master_name }}</span>
+            <span style="float:right;margin-right:15px;">浏览：{{index.times }}</span> 
+        </p>
         <p class="worklist-content">发布于：{{index.create_time}}</p>
         <p class="worklist-content">有效期：{{index.validtime}}</p>
         <router-link
@@ -151,8 +154,8 @@ export default {
     //获取当前用户接收的所有任务
     getUsersWork: function() {
       var that = this;
-      //var url = "http://127.0.0.1:3000/api/users/myAcceptMission";
-      var url = "http://39.107.97.203:3000/api/users/myAcceptMission";
+      var url = "http://127.0.0.1:3000/api/users/myAcceptMission";
+      //var url = "http://39.107.97.203:3000/api/users/myAcceptMission";
       var instance = axios.create({
         headers: {
           "content-type": "application/x-www-form-urlencoded;charset=UTF-8"
@@ -172,8 +175,8 @@ export default {
               that.tasklist[i].validtime = new Date(
                 that.tasklist[i].validtime
               ).format("yyyy-MM-dd hh:mm");
+              if(that.tasklist[i].times == null) that.tasklist[i].times = 0;
             }
-            console.log(that.tasklist);
           } else {
             that.$message({
               message: res.data.msg,
