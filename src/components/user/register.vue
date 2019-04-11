@@ -99,7 +99,7 @@ export default {
       }
     };
     //用户名是否合法(字母开头，允许3-16字节，允许字母数字下划线)
-    var namea = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;
+    var namea = /^.{2,15}$/;
     var validateName = (rule, value, callback) => {
       if (!value) {
         return callback(new Error("用户名不能为空"));

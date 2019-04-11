@@ -42,8 +42,7 @@ export default {
     width: 80%;
     margin: auto;
     padding: 0;
-    height: 100%;
-    
+    height: 75px;
 }
 .mint-searchbar-inner{
     height: 35px;
@@ -58,10 +57,12 @@ export default {
     font-size: 22px;
     color: #000;
     margin-top: 2px;
+    position: absolute;
+    right: 5%;
 }
 /* icon后的input */
 .mint-searchbar-core{
-    padding-left: 5px;
+    padding-left: 15px;
     font-size: 16px;
     padding-top: 2px;
     line-height: 16px;

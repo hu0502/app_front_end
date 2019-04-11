@@ -105,7 +105,7 @@ export default {
               that.userInfo.u_class = userInfoApi.u_class;
               that.userInfo.sex = userInfoApi.sex;
               that.userInfo.createtime = new Date(userInfoApi.createtime).format(
-                "yyyy-MM-dd"
+                "yyyy-MM-dd hh:mm"
               );
               that.userInfo.tel = userInfoApi.tel;
               that.userInfo.score = userInfoApi.score;
