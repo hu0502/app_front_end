@@ -91,8 +91,8 @@ export default {
                     user_name :_this.LoginForm.username,
                     password :_this.LoginForm.password,
                 }
-                var url = 'http://127.0.0.1:3000/api/users/login'
-                //var url = 'http://39.107.97.203:3000/api/users/login'
+                 //var url = 'http://127.0.0.1:3000/api/users/login'
+                var url = 'http://39.107.97.203:3000/api/users/login'
                 var instance = axios.create({ headers: 
                     {'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'} 
                 });

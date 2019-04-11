@@ -153,8 +153,8 @@ export default {
     /* 打工仔接取的已完成的任务 */
     getUsersWork: function() {
       var that = this;
-      var url = "http://127.0.0.1:3000/api/mission/slave_status2";
-      //var url = "http://39.107.97.203:3000/api/mission/slave_status2";
+      //var url = "http://127.0.0.1:3000/api/mission/slave_status2";
+      var url = "http://39.107.97.203:3000/api/mission/slave_status2";
       var instance = axios.create({
         headers: {
           "content-type": "application/x-www-form-urlencoded;charset=UTF-8"

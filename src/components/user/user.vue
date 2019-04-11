@@ -38,7 +38,7 @@
                <router-link to="/master_status1">
                <li>
                     <svg class="icon middleicon jinbi" aria-hidden="true">
-                        <use xlink:href="#iconfabu-copy"></use>
+                        <use xlink:href="#iconxiaoyuanjianzhi"></use>
                     </svg>
                     <span class="mydetail">正在进行</span>
                     <svg class="icon middleicon youjiantou" aria-hidden="true">
@@ -50,7 +50,7 @@
                <router-link to="/master_status2">
                <li>
                     <svg class="icon middleicon jinbi" aria-hidden="true">
-                        <use xlink:href="#iconfabu-copy"></use>
+                        <use xlink:href="#iconzhuanye"></use>
                     </svg>
                     <span class="mydetail">已完成任务</span>
                     <svg class="icon middleicon youjiantou" aria-hidden="true">
@@ -62,7 +62,7 @@
                <router-link to="/master_status3">
                <li>
                     <svg class="icon middleicon jinbi" aria-hidden="true">
-                        <use xlink:href="#iconfabu-copy"></use>
+                        <use xlink:href="#iconlianjiechaoshi"></use>
                     </svg>
                     <span class="mydetail">超时任务</span>
                     <svg class="icon middleicon youjiantou" aria-hidden="true">

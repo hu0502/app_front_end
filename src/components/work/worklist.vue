@@ -143,8 +143,8 @@ export default {
   methods: {
     getAllTask() {
       var that = this;
-      var url = "http://127.0.0.1:3000/api/mission/unaccpetedlist";
-      //var url = "http://39.107.97.203:3000/api/mission/unaccpetedlist";
+      //var url = "http://127.0.0.1:3000/api/mission/unaccpetedlist";
+      var url = "http://39.107.97.203:3000/api/mission/unaccpetedlist";
       axios.get(url).then(res => {
         if (res.status === 200) {
           if (res.data.status === 0) {
@@ -179,8 +179,8 @@ export default {
       var Data = {
         user_id : that.$store.state.user_id
       }
-      var url = "http://127.0.0.1:3000/api/mission/recommend";
-      //var url = "http://39.107.97.203:3000/api/mission/recommend";
+      //var url = "http://127.0.0.1:3000/api/mission/recommend";
+      var url = "http://39.107.97.203:3000/api/mission/recommend";
       axios.post(url,qs.stringify(Data)).then(res => {
         if (res.status === 200) {
           if (res.data.status === 0) {

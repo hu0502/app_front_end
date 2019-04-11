@@ -151,8 +151,8 @@ export default {
     //获取当前用户发布的所有任务中--已被打工仔接收的 && 正在进行中的
     getUsersWork: function() {
       var that = this;
-      var url = "http://127.0.0.1:3000/api/mission/master_status1";
-      //var url = "http://39.107.97.203:3000/api/mission/master_status1";
+     // var url = "http://127.0.0.1:3000/api/mission/master_status1";
+      var url = "http://39.107.97.203:3000/api/mission/master_status1";
       var Data = {
         user_id :that.$store.state.user_id
       }
