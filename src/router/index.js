@@ -8,9 +8,6 @@ import register from '@/components/user/register'
 import user from '@/components/user/user'
 import personalcenter from '@/components/user/personalcenter'
 import updateUserInfo from '@/components/user/updateUserInfo'
-import userIssuedWork from '@/components/user/userIssuedWork'
-import userAccepttedWork from '@/components/user/userAccepttedWork'
-import userAchievedWork from '@/components/user/userAchievedWork'
 import usermoney from '@/components/user/usermoney'
 import message from '@/components/message/message'
 import tongzhi from '@/components/message/tongzhi'
@@ -19,6 +16,13 @@ import partone from '@/components/square/partone'
 import worklist from '@/components/work/worklist'
 import issueWork from '@/components/work/issueWork'
 import workdetails from '@/components/work/workdetails'
+import master_status0 from '@/components/work/master_status0'
+import master_status1 from '@/components/work/master_status1'
+import master_status2 from '@/components/work/master_status2'
+import master_status3 from '@/components/work/master_status3'
+import slave_status1 from '@/components/work/slave_status1'
+import slave_status2 from '@/components/work/slave_status2'
+import slave_status3 from '@/components/work/slave_status3'
 Vue.use(Router)
 
 const router = new Router({
@@ -115,35 +119,64 @@ const router = new Router({
         component: issueWork
     },
     
-    //查看【我的发布】
+   /* ******** 雇主 ******** */
     {
-        path: '/userIssuedWork',
-        name: 'userIssuedWork',
-        meta: {
-            requireAuth: true //进入路由页面时需要先登陆
-        }, 
-        component: userIssuedWork
-    },
-    //用户查看【我接收的任务--我的参与】
-    {
-        path:'/userAccepttedWork',
-        name:'userAccepttedWork',
+        path: '/master_status0',
+        name: 'master_status0',
         meta: {
             requireAuth: true 
         }, 
-        component: userAccepttedWork
+        component: master_status0
     },
-    
-    //用户查看【我发布的任务-已被打工仔接收的】
     {
-        path:'/userAchievedWork',
-        name:'userAchievedWork',
+        path: '/master_status1',
+        name: 'master_status1',
         meta: {
             requireAuth: true 
         }, 
-        component: userAchievedWork
+        component: master_status1
     },
-   
+    {
+        path: '/master_status2',
+        name: 'master_status2',
+        meta: {
+            requireAuth: true 
+        }, 
+        component: master_status2
+    },
+    {
+        path: '/master_status3',
+        name: 'master_status3',
+        meta: {
+            requireAuth: true 
+        }, 
+        component: master_status3
+    },
+    /* ******** 打工仔 ******** */
+    {
+        path: '/slave_status1',
+        name: 'slave_status1',
+        meta: {
+            requireAuth: true 
+        }, 
+        component: slave_status1
+    },
+    {
+        path: '/slave_status2',
+        name: 'slave_status2',
+        meta: {
+            requireAuth: true 
+        }, 
+        component: slave_status2
+    },
+    {
+        path: '/slave_status3',
+        name: 'slave_status3',
+        meta: {
+            requireAuth: true 
+        }, 
+        component: slave_status3
+    },
     //用户查看【我的金币】
     {
         path:'/usermoney',

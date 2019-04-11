@@ -249,8 +249,8 @@ export default {
   height: 80px;
 }
 .register_aaalink {
-  text-decoration: underline;
   color: #fff;
+  text-decoration: none;
 }
 
 .registerbg {

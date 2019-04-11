@@ -138,8 +138,8 @@ export default {
     padding: 0;margin: 0;
 }
 .aaalink{
-    text-decoration: underline;
     color: #fff;
+    text-decoration: none;
 }
 .topImg{
     width: 100px;height: 100px;

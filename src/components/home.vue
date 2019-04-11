@@ -76,46 +76,8 @@
             </router-link>
           </ul>
           
-          <!-- 接收任务 -->
-          <span class="title">
-            <i slot="icon" class="iconfont icontianjiayonghu"></i>
-            <span>组队任务</span>
-          </span>
-          <ul class="workul multi">
-            <!-- 组队任务入口 -->
-             <router-link to="/issueWork">
-              <li>
-                <p>
-                  <i class="iconfont iconjianbuzou workmulti"></i>
-                </p>
-                <p>跑腿</p>
-              </li>
-            </router-link>
-            <router-link to="/issueWork">
-            <li>
-              <p>
-                <i class="iconfont iconicon-test workmulti"></i>
-              </p>
-              <p>代取</p>
-            </li>
-            </router-link>
-            <router-link to="/issueWork">
-            <li>
-              <p>
-                <i class="iconfont iconzhuanye workmulti"></i>
-              </p>
-              <p>技能</p>
-            </li>
-            </router-link>
-            <router-link to="/issueWork">
-            <li>
-              <p>
-                <i class="iconfont iconzhiyeguihua workmulti"></i>
-              </p>
-              <p>兼职</p>
-            </li>
-            </router-link>
-          </ul>
+         
+          
           <!-- 加载最新任务列表 前两条-->
           <span class="title">
             <i slot="icon" class="iconfont iconrenwu1"></i>

@@ -5,13 +5,14 @@
                 <img src="../../../static/userlogo.png" alt="" class="topImg" />
             </p>
             <p v-if="!this.$store.state.user_name">
-                <span>welcome!去
+               <!--  <span>welcome!去
                     <router-link to="/login" class="linkaaa">登陆 </router-link>&nbsp;/
                     <router-link to="/register" class="linkaaa">注册</router-link>
-                </span>
+                </span> -->
+                <ElButton type="primary" class="btn" @click="toLogin()">登陆</ElButton>
+                <ElButton type="primary" class="btn" @click="toEnroll()">注册</ElButton>
             </p> 
             <p v-else>
-                <!-- {{this.$store.state.user_id}} -->
                 <span class="linkbbb-span">{{this.$store.state.user_name}}</span> 
                 <router-link to="/personalcenter">
                     <el-button type="primary" class="linkbbb-button">个人中心</el-button>
@@ -20,8 +21,9 @@
        </div>
        <div class="middleList">
            <ul class="middlelistUl">
-                <!-- 我的发布 -->
-               <router-link to="/userIssuedWork">
+               <p><el-tag class="ptag">我是雇主</el-tag></p>
+                <!-- 我发布的所有未接单任务 -->
+               <router-link to="/master_status0">
                <li>
                     <svg class="icon middleicon jinbi" aria-hidden="true">
                         <use xlink:href="#iconfabu-copy"></use>
@@ -32,8 +34,46 @@
                     </svg>
                </li>
                </router-link>
-               <!-- 我接收的任务 -->
-               <router-link to="/userAccepttedWork">
+               <!-- 雇主发布的所有进行中的任务 userAchievedWork -->
+               <router-link to="/master_status1">
+               <li>
+                    <svg class="icon middleicon jinbi" aria-hidden="true">
+                        <use xlink:href="#iconfabu-copy"></use>
+                    </svg>
+                    <span class="mydetail">正在进行</span>
+                    <svg class="icon middleicon youjiantou" aria-hidden="true">
+                        <use xlink:href="#iconarr-right-blue"></use>
+                    </svg>
+               </li>
+               </router-link>
+              <!-- 雇主发布的所有已完成的任务 -->
+               <router-link to="/master_status2">
+               <li>
+                    <svg class="icon middleicon jinbi" aria-hidden="true">
+                        <use xlink:href="#iconfabu-copy"></use>
+                    </svg>
+                    <span class="mydetail">已完成任务</span>
+                    <svg class="icon middleicon youjiantou" aria-hidden="true">
+                        <use xlink:href="#iconarr-right-blue"></use>
+                    </svg>
+               </li>
+               </router-link>
+               <!-- 雇主发布的所有已超时任务 -->
+               <router-link to="/master_status3">
+               <li>
+                    <svg class="icon middleicon jinbi" aria-hidden="true">
+                        <use xlink:href="#iconfabu-copy"></use>
+                    </svg>
+                    <span class="mydetail">超时任务</span>
+                    <svg class="icon middleicon youjiantou" aria-hidden="true">
+                        <use xlink:href="#iconarr-right-blue"></use>
+                    </svg>
+               </li>
+               </router-link>
+
+              <p><el-tag class="ptag">我是打工仔</el-tag></p>
+               <!-- 我接收的任务 userAccepttedWork-->
+               <router-link to="/slave_status1">
                <li>
                     <svg class="icon middleicon jinbi" aria-hidden="true">
                         <use xlink:href="#iconplus-questionnaire-copy"></use>
@@ -44,7 +84,31 @@
                     </svg>
                </li>
                </router-link>
-               <!-- 我的金币 -->
+               <!-- 我接收的任务 已完成-->
+               <router-link to="/slave_status2">
+               <li>
+                    <svg class="icon middleicon jinbi" aria-hidden="true">
+                        <use xlink:href="#iconshezhi"></use>
+                    </svg>
+                    <span class="mydetail">我完成的</span>
+                    <svg class="icon middleicon youjiantou" aria-hidden="true">
+                        <use xlink:href="#iconarr-right-blue"></use>
+                    </svg>
+               </li>
+               </router-link>
+               <!-- 我接收的任务 超时
+               <router-link to="/slave_status3">
+               <li>
+                    <svg class="icon middleicon jinbi" aria-hidden="true">
+                        <use xlink:href="#iconplus-questionnaire-copy"></use>
+                    </svg>
+                    <span class="mydetail">超时未完成</span>
+                    <svg class="icon middleicon youjiantou" aria-hidden="true">
+                        <use xlink:href="#iconarr-right-blue"></use>
+                    </svg>
+               </li>
+               </router-link>-->
+               <!-- 我的金币 
                <router-link to="/usermoney">
                <li>
                     <svg class="icon middleicon jinbi" aria-hidden="true">
@@ -55,21 +119,8 @@
                         <use xlink:href="#iconarr-right-blue"></use>
                     </svg>
                </li>
-               </router-link>
-               <router-link to="/userAchievedWork">
-               <!-- 我的任务-已被接收的任务 -->
-               <li>
-                    <svg class="icon middleicon jinbi" aria-hidden="true">
-                        <use xlink:href="#iconshangdian"></use>
-                    </svg>
-                    <span class="mydetail">正在进行的任务</span>
-                    <svg class="icon middleicon youjiantou" aria-hidden="true">
-                        <use xlink:href="#iconarr-right-blue"></use>
-                    </svg>
-               </li>
-               </router-link>
-              
-               <!-- 我的技能 -->
+               </router-link>-->
+               <!-- 我的技能 
                <li>
                     <svg class="icon middleicon jinbi" aria-hidden="true">
                         <use xlink:href="#iconshezhi"></use>
@@ -78,7 +129,7 @@
                     <svg class="icon middleicon youjiantou" aria-hidden="true">
                         <use xlink:href="#iconarr-right-blue"></use>
                     </svg>
-               </li>
+               </li>-->
            </ul>
        </div>
     </div>
@@ -117,6 +168,18 @@
     line-height: 30px;
      
 }
+.middlelistUl p{
+    margin-top: 10px;
+    position: absolute;
+}
+.ptag{
+    padding-left: 10px;
+    padding-right: 10px;
+    transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg); /* IE 9 */
+    -webkit-transform: rotate(-30deg); /* Safari and Chrome */
+    border: 1px solid #409EFF;
+}
 .jinbi{
     width: 30px;
     height: 30px;
@@ -124,11 +187,11 @@
     left: 10%;
 }
 .mydetail{
-    color: #46b1b8;
-    margin-left: 80px;
-    font-size: 18px;
+    /* color: #46b1b8; */
+    color: #545454;
+    margin-left: 90px;
+    font-size: 17px;
     letter-spacing: 2px;
-    font-family: "黑体";
     font-weight: normal;
 }
 .youjiantou{
@@ -157,7 +220,10 @@
     height: 40px;
     margin-top: 10px;
 }
-
+.btn{
+    width: 80px;
+    height: 35px;
+}
 
 
 </style>
@@ -171,7 +237,11 @@ export default {
     },
     methods: {
         
-        handleClick:function(){
+        toLogin(){
+            this.$router.push({name:'login'});
+        },
+        toEnroll(){
+            this.$router.push({name:'register'});
         }
     },
 }
