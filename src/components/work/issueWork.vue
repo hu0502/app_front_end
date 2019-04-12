@@ -1,9 +1,12 @@
 <template>
     <div class="issueWork">
-        <div class="issue">
-            发布任务
-        </div>
+        <mt-header title=" 发布任务" class="issueaaa">
+            <mt-button icon="back" slot="left" @click="$router.back(-1)">
+                返回
+            </mt-button>
+        </mt-header>
         <el-form 
+        style="padding: 0 20px;"
         :model="LoginForm" 
         ref="LoginForm" 
         :rules="loginRules" 
@@ -52,9 +55,9 @@
                 </el-col>
             </el-form-item>
            
-            <el-form-item>
+            <el-form-item class="btn_issue" style="margin-left:0;">
                 <el-button type="primary" @click="submitForm('LoginForm')">立即发布</el-button>
-                <router-link to="/"><el-button>返回首页</el-button></router-link>
+               
             </el-form-item>
 
         </el-form>
@@ -62,27 +65,38 @@
 </template>
 
 <style>
+.issueaaa {
+  height: 75px !important;
+  width: 100%;
+  line-height: 75px !important;
+  font-size: 18px ;
+  background-color:#46b1b8 !important;
+}
 .issueWork{
-    margin-top:10px;
+    /* margin-top:10px; */
     text-align: left;
     /* background-color: #46b1b8; */
 }
-.issue{
+/* .issue{
     height: 50px;
     text-align: center;
     font-size: 26px;
     color: #46b1b8;
     line-height: 50px;
     padding: 10px 0;
-}
+} */
 .formClass{
-    padding: 0 15px;
-  
+    margin-top: 10px;
 }
 .el-form-item{
     padding: 10px 0;
     margin: 0;
 }
+.btn_issue .el-form-item__content{
+   text-align:center !important;
+   margin-left: 0 !important;
+}
+
 </style>
 
 <script>
@@ -143,7 +157,10 @@ export default {
                                 message: '发布成功',
                                 type: 'success'
                             })
-                            _this.$router.push({ name:'home'})
+                             setTimeout(() => {
+                               _this.$router.push({ name:'master_status0'})
+                             }, 1000);
+                           
                             }else{
                             _this.$message({
                                 message: res.data.msg,

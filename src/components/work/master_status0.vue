@@ -47,12 +47,12 @@
 }
 .mint-header {
   background-color:#46b1b8 !important;
-  height: 75px;
+  height: 75px !important;
   font-size: 16px;
-  line-height: 75px;
+  line-height: 75px !important;
 }
 .mint-header-title {
-  line-height: 75px;
+  line-height: 75px !important;
   margin: 0;
 }
 /* 任务列表 */

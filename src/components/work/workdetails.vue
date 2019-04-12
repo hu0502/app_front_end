@@ -227,7 +227,7 @@ export default {
     methods: {
       //check:()
       check(){
-        this.$router.push({ name:'userIssuedWork'})
+        this.$router.push({ name:'master_status0'})
       },
       //用户完成任务
       achievedTask(){
@@ -248,7 +248,10 @@ export default {
                       message: res.data.msg,
                       type: 'success'
                   })
-                  Athis.$router.go(0);
+                 
+                  setTimeout(() => {
+                    Athis.$router.go(0);
+                  }, 1000);
               
                 }else{
                    Athis.$message({
@@ -278,10 +281,12 @@ export default {
           if (res.status === 200){
                 if(res.data.status===0){
                   that.$message({
-                      message: res.data.msg,
+                      message: "成功接取任务",
                       type: 'success'
                   })
-                  that.$router.go(0);
+                   setTimeout(() => {
+                     that.$router.go(0);
+                    }, 1000);
                 }else{
                   that.$message({
                       message: res.data.msg,
@@ -305,7 +310,7 @@ export default {
             mission_id :  that.$route.query.mission_id,
             user_id : that.$store.state.user_id
         }
-        console.log(Data)
+       // console.log(Data)
         instance.post(url,qs.stringify(Data))
         .then(res =>{
             if (res.status === 200){

@@ -104,7 +104,9 @@ export default {
                             _this.$store.commit('SET_user_id', apiData.user_id)
                             _this.$store.commit('GET_user_name', apiData.user_name)
                            //console.log(_this.$store.state.user_id)
-                                _this.$router.push({ name:'user'})
+                                 setTimeout(() => {
+                                     _this.$router.push({ name:'user'})
+                                }, 1000);
                                 _this.$message({
                                     message: '登陆成功',
                                     type: 'success'
@@ -167,8 +169,8 @@ export default {
 .login_div{
     margin: auto;
     padding-top: 30px;
-    left: 0;right: 0;top: 0;bottom: 0;
-    width: 330px;
+    left: 0;right: 0;top: 30px;bottom: 0;
+    width: 350px;
     height: 580px;
     /* position: fixed; */
     background-color: #363636;

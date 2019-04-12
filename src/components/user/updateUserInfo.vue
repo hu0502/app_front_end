@@ -197,7 +197,10 @@ export default {
                   type: "success"
                 });
                 // _this.$router.push({ name: "personalcenter" });
-                _this.$router.go(0);
+                //_this.$router.go(0);
+                 setTimeout(() => {
+                    _this.$router.push({ name: "personalcenter" });
+                  }, 1000);
               } 
               else {
                 _this.$message({

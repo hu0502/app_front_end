@@ -23,9 +23,9 @@
 </template>
 <style>
 .personal {
-  height: 75px;
+  height: 75px !important;
   width: 100%;
-  line-height: 75px;
+  line-height: 75px !important;
   font-size: 18px;
   background-color:#46b1b8 !important;
 }

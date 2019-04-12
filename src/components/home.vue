@@ -96,7 +96,7 @@
               </p>
               <p class="workul-content1">
                 <span>雇主：{{index.master_name }}</span>
-                <span style="left: 79%;position: absolute;">浏览：{{index.times }}</span>
+                <span style="left: 85%;position: absolute;">浏览：{{index.times }}</span>
               </p>
               <p class="workul-content1">发布于：{{index.create_time}}</p>
               <p class="workul-content1">有效期：{{index.validtime}}</p>
@@ -271,15 +271,15 @@ ul,li {
 }
 /* 轮播图大小位置 */
 .mint-swipe {
-  height: 210px;
+  height: 300px;
   width: 100%;
 }
 .mint-swipe-items-wrap > div {
-  height: 225px;
+  height: 300px;
 }
 .ccc img {
   width: 100%;
-  height: 225px;
+  height: 300px;
 }
 /* 白点 */
 .mint-swipe-indicators {
@@ -392,7 +392,7 @@ ul,li {
 }
 /* 悬赏金币位置 */
 .workul-money {
-  left: 85%;
+  left:87% !important;
   position: absolute;
 }
 /* 任务标题 */
@@ -415,7 +415,7 @@ ul,li {
 }
 .check{
   position: absolute;
-  left: 86%;
+  left: 87%;
   margin-top: -50px;
 }
 /* 最新任务类型标签部分 */

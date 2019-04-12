@@ -54,11 +54,11 @@ export default {
 }
 /* icon搜索 */
 .mint-searchbar-inner .mintui-search{
-    font-size: 22px;
-    color: #000;
-    margin-top: 2px;
-    position: absolute;
-    right: 5%;
+    font-size: 22px !important;
+    color: #545454 !important;
+    position: absolute !important;
+    right: 5% !important;
+    top:5%;
 }
 /* icon后的input */
 .mint-searchbar-core{

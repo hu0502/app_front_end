@@ -20,9 +20,9 @@
           <el-form-item prop="tel" class="reform">
             <el-input v-model="RegisterForm.tel" placeholder="请输入手机号："></el-input>
           </el-form-item>
-          <el-form-item prop="code" class="reform" id="validcode">
+         <!--  <el-form-item prop="code" class="reform" id="validcode">
             <el-input v-model="RegisterForm.code" placeholder="请输入验证码："></el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item prop="user_name" class="reform">
             <el-input v-model="RegisterForm.user_name" placeholder="请输入用户名："></el-input>
           </el-form-item>
@@ -35,13 +35,15 @@
           <el-form-item prop="department" class="reform">
             <el-input v-model="RegisterForm.department" placeholder="请输入所在院系："></el-input>
           </el-form-item>
-          <el-button type="danger" @click="getCode()">获取验证码</el-button>
+        <!--   <el-button type="danger" @click="getCode()">获取验证码</el-button> -->
+
           <el-button
             type="primary"
             @click="submitForm('RegisterForm')"
             class="register_aaa"
             icon="el-icon-circle-check-outline"
           >注册</el-button>
+          <el-button type="info" @click="resetForm('ruleForm')">重置</el-button>
         </el-form>
       </div>
       <!-- 跳转到登陆入口 -->
@@ -145,7 +147,7 @@ export default {
         department: [
           { required: true, message: "请输入所在院系！", trigger: "blur" }
         ],
-        code: [{ required: false, validator: validateCode, trigger: "blur" }]
+       // code: [{ required: false, validator: validateCode, trigger: "blur" }]
       },
      /*  rules2: {
         tel: [{ required: true, validator: validatePhone, trigger: "blur" }]
@@ -188,6 +190,12 @@ export default {
       }
           
     },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+      //this.$router.push('/choose');
+      this.$router.go(0)
+    },
+  
     //用户注册
     submitForm(formName) {
       var _this = this;
@@ -211,10 +219,13 @@ export default {
               if (res.data.status === 0) {
                 var apiRegisterData = res.data.data;
                 _this.$message({
-                  message: "注册成功",//+_this.RegisterForm.info.clientid
+                  message: "注册成功,首次登陆系统赠送1000积分",//+_this.RegisterForm.info.clientid
                   type: "success"
                 });
-                _this.$router.push({ name: "login" });
+                 setTimeout(() => {
+                   _this.$router.push({ name: "login" });
+                }, 1000);
+               
               } else {
                 _this.$message({
                   message: res.data.msg,
@@ -267,12 +278,12 @@ export default {
   margin: auto;
   left: 0;
   right: 0;
-  top: 0;
+  top: 30px;
   bottom: 0;
   min-height: 650px;
   height: 650px;
-  min-width: 320px;
-  width: 320px;
+  min-width: 350px;
+  width: 350px;
   background-color: #363636;
   opacity: 0.8;
   padding-top: 20px;

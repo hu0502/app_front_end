@@ -20,7 +20,7 @@
         </p>
         <p class="worklist-content">
           <span>雇主：{{index.master_name }}</span>
-          <span style="left: 81%;position: absolute;">浏览：{{index.times }}</span>  
+          <span style="left: 85%;position: absolute;">浏览：{{index.times }}</span>  
         </p>
         <p class="worklist-content">发布于：{{index.create_time}}</p>
         <p class="worklist-content">有效期：{{index.validtime}}</p>
@@ -36,6 +36,7 @@
           <el-button icon="el-icon-search" circle type="danger" class="check"></el-button>
         </router-link>
       </li>
+       <router-link to="/"><el-button type="primary" class="btn_list">返回首页</el-button></router-link>
     </ul>
   </div>
 </template>
@@ -91,7 +92,7 @@
 }
 /* 悬赏金币位置 */
 .worklist-money {
-  left: 85%;
+  left: 87% !important;
   position: absolute;
 }
 /* 任务标题 */
@@ -114,7 +115,7 @@
 }
 .check {
   position: absolute;
-  left: 85%;
+  left: 87% !important;
   margin-top: -50px !important;
 }
 .icontest {
@@ -126,6 +127,9 @@
   right: 60px;
   margin-top: 3px;
   margin-right: 10px;
+}
+.btn_list{
+  margin-top: 10px;
 }
 </style>
 
