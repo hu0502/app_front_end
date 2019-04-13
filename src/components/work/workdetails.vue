@@ -59,6 +59,10 @@
                 v-if="this.flag===0">
                 查看我发布的任务
               </el-button>
+              <el-button type="info" 
+                @click="refresh()">
+                刷新
+              </el-button>
             </p>
           </li>
        </ul>
@@ -229,6 +233,9 @@ export default {
       check(){
         this.$router.push({ name:'master_status0'})
       },
+      refresh(){
+          location.reload()
+      },
       //用户完成任务
       achievedTask(){
         var Athis = this;
@@ -244,15 +251,10 @@ export default {
                 if(res.data.status === 0){
 
                   var achievedAPI = res.data.data;
-                  Athis.$message({
+                      Athis.$message({
                       message: res.data.msg,
                       type: 'success'
-                  })
-                 
-                  setTimeout(() => {
-                    Athis.$router.go(0);
-                  }, 1000);
-              
+                      })
                 }else{
                    Athis.$message({
                       message: res.data.msg,
@@ -260,6 +262,10 @@ export default {
                   })
                     return false;
                 }
+                 //location.reload()
+                setTimeout(() => {
+                    location.reload()
+                  }, 1000);
               }else{
                   console.log(res.status)
                   return false;
@@ -280,19 +286,22 @@ export default {
         .then(res =>{
           if (res.status === 200){
                 if(res.data.status===0){
-                  that.$message({
-                      message: "成功接取任务",
-                      type: 'success'
-                  })
-                   setTimeout(() => {
-                     that.$router.go(0);
-                    }, 1000);
+                      that.$message({
+                        message: "成功接取任务",
+                        type: 'success'
+                      })
+                      
                 }else{
                   that.$message({
                       message: res.data.msg,
                       type: 'error'
                   })
-                    return false;}
+                    return false;
+                }
+               // that.$router.go(0);
+                 setTimeout(() => {
+                    location.reload()
+                  }, 1000);
           }else{
             return false;
           }

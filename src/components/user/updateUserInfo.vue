@@ -35,6 +35,7 @@
             </el-form-item>
         <el-form-item>
             <el-button type="danger" @click="submitForm('updateForm')">确认修改</el-button>
+            <el-button type="primary" @click="goback()">返回首页</el-button>
         </el-form-item>
 
         </el-form>
@@ -124,6 +125,9 @@ export default {
         }
     },
     methods: {
+      goback(){
+        this.$router.push({ name: "home" });
+      },
       updateInfo(){
         var that = this;
         //var url = "http://39.107.97.203:8080/api/OfferReward/User/SelectUserMsg";  
@@ -196,10 +200,10 @@ export default {
                   message: "成功更新个人信息",
                   type: "success"
                 });
-                // _this.$router.push({ name: "personalcenter" });
+                //_this.$router.push({ name: "personalcenter" });
                 //_this.$router.go(0);
                  setTimeout(() => {
-                    _this.$router.push({ name: "personalcenter" });
+                  _this.$router.push({ name: "personalcenter" });
                   }, 1000);
               } 
               else {

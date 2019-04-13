@@ -36,6 +36,7 @@
           <el-button icon="el-icon-search" circle type="danger" class="check"></el-button>
         </router-link>
       </li>
+       <router-link to="/"><el-button type="primary" class="btn_list">返回首页</el-button></router-link>
     </ul>
   </div>
 </template>
@@ -44,6 +45,9 @@
 * {
   padding: 0;
   margin: 0;
+}
+.btn_list{
+  margin-top: 15px;
 }
 .mint-header {
   background-color:#46b1b8 !important;

@@ -1,16 +1,19 @@
 <template>
     <div class="user">
         <div class="topBg"> 
-            <p class="topP1">
+            <p class="topP1" v-if="!this.$store.state.user_name">
+                <img src="../../../static/userlogo.png" alt="" class="topImg" />
+            </p>
+            <p class="topP1" v-else>
                 <img src="../../../static/userlogo.png" alt="" class="topImg" />
             </p>
             <p v-if="!this.$store.state.user_name">
-               <!--  <span>welcome!去
+                <!--  <span>welcome!去
                     <router-link to="/login" class="linkaaa">登陆 </router-link>&nbsp;/
                     <router-link to="/register" class="linkaaa">注册</router-link>
                 </span> -->
-                <ElButton type="primary" class="btn" @click="toLogin()">登陆</ElButton>
-                <ElButton type="primary" class="btn" @click="toEnroll()">注册</ElButton>
+                <el-Button type="primary" class="btn" @click="toLogin()">登陆</el-Button>
+                <el-Button type="primary" class="btn" @click="toEnroll()">注册</el-Button>
             </p> 
             <p v-else>
                 <span class="linkbbb-span">{{this.$store.state.user_name}}</span> 

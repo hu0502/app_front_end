@@ -129,7 +129,7 @@
   margin-right: 10px;
 }
 .btn_list{
-  margin-top: 10px;
+  margin-top: 15px;
 }
 </style>
 

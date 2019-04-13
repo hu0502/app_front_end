@@ -22,7 +22,7 @@
                         <el-input type="password" v-model="LoginForm.password" placeholder="请输入密码："></el-input>
                     </el-form-item>
                     <el-button type="primary" @click="submitForm('LoginForm')" class="login_aaa" icon="el-icon-circle-check-outline">登录</el-button>
-                    <el-button icon="el-icon-refresh">重置</el-button>
+                    <el-button  icon="el-icon-refresh" @click="resetForm('RegisterForm')">重置</el-button>
                 </el-form>
             </div>
             <!-- 跳转到注册入口 -->
@@ -82,6 +82,11 @@ export default {
         }
     },
     methods: {
+        resetForm(formName) {
+      this.$refs[formName].resetFields();
+      //this.$router.push('/choose');
+      this.$router.go(0)
+    },
     //用户登录
     submitForm(formName) {
         var _this = this;

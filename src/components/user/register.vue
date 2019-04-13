@@ -43,7 +43,7 @@
             class="register_aaa"
             icon="el-icon-circle-check-outline"
           >注册</el-button>
-          <el-button type="info" @click="resetForm('ruleForm')">重置</el-button>
+          <el-button icon="el-icon-refresh" @click="resetForm('RegisterForm')">重置</el-button>
         </el-form>
       </div>
       <!-- 跳转到登陆入口 -->
@@ -130,8 +130,8 @@ export default {
         tel: "",
         department: "",
         code: "", //验证码
-        bcode :"" //后端获取的验证码
-      //  info : plus.push.getClientInfo()
+        bcode :"" ,//后端获取的验证码
+        //info : plus.push.getClientInfo()
       },
       RegisterRules: {
         user_name: [
@@ -207,7 +207,7 @@ export default {
               tel: _this.RegisterForm.tel,
               //code: _this.RegisterForm.code,
               department: _this.RegisterForm.department,
-            // clientid:_this.RegisterForm.info.token
+             // clientid:_this.RegisterForm.info.token
             };
          // var url = "http://127.0.0.1:3000/api/users/enroll";
           var url = "http://39.107.97.203:3000/api/users/enroll";
@@ -222,7 +222,7 @@ export default {
                   message: "注册成功,首次登陆系统赠送1000积分",//+_this.RegisterForm.info.clientid
                   type: "success"
                 });
-                 setTimeout(() => {
+                setTimeout(() => {
                    _this.$router.push({ name: "login" });
                 }, 1000);
                

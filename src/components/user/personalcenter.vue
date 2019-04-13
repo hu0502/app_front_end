@@ -1,7 +1,7 @@
 <template>
   <div class="personalcenter">
     <mt-header title="个人中心" class="personal">
-      <mt-button icon="back" slot="left" @click="$router.back(-1)">
+      <mt-button icon="back" slot="left" @click="goback()">
         返回
       </mt-button>
     </mt-header>
@@ -83,6 +83,9 @@ export default {
     };
   },
   methods: {
+    goback(){
+        this.$router.push({ name: "home" });
+    },
     //查询用户信息
     getUserInfo: function() {
       var that = this;
