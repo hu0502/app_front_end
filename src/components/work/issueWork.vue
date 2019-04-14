@@ -54,7 +54,11 @@
                     </el-date-picker>
                 </el-col>
             </el-form-item>
-           
+
+            <el-form-item label="QQ/微信" prop="contact"  >
+                <el-input v-model="LoginForm.contact" placeholder="请填写联络方式"></el-input>
+            </el-form-item>
+
             <el-form-item class="btn_issue" style="margin-left:0;">
                 <el-button type="primary" @click="submitForm('LoginForm')">立即发布</el-button>
                
@@ -95,6 +99,7 @@
 .btn_issue .el-form-item__content{
    text-align:center !important;
    margin-left: 0 !important;
+   margin-top:20px !important;
 }
 
 </style>
@@ -112,7 +117,8 @@ export default {
                 label: '',
                 location:'',
                 score:'',
-                validtime: ''
+                validtime: '',
+                contact:''
             },
             loginRules:{
                 title: [
@@ -123,7 +129,8 @@ export default {
                 label: [{required: true, message: '请选择任务标签', trigger: 'change'}],
                 location: [{required: true, message: '请填写任务位置', trigger: 'blur' }],
                 score: [{required: true, message: '请选择悬赏积分', trigger: 'change' }],
-                validtime: [{required: true, message: '请选择任务有效日期', trigger: 'change' }]
+                validtime: [{required: true, message: '请选择任务有效日期', trigger: 'change' }],
+                contact:[{ required: true, message: '请输入联络方式以确保打工仔能联系到您', trigger: 'blur' }]
             }
         }
     },
@@ -141,6 +148,7 @@ export default {
                     location:  _this.LoginForm.location,
                     score: _this.LoginForm.score,
                     validtime: _this.LoginForm.validtime,
+                    contact: _this.LoginForm.contact,
                     master: _this.$store.state.user_id
                 }
                // var url = 'http://127.0.0.1:3000/api/mission/issue'

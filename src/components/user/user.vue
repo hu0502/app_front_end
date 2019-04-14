@@ -99,18 +99,18 @@
                     </svg>
                </li>
                </router-link>
-               <!-- 我接收的任务 超时
+               <!-- 我接收的任务 超时-->
                <router-link to="/slave_status3">
                <li>
                     <svg class="icon middleicon jinbi" aria-hidden="true">
-                        <use xlink:href="#iconplus-questionnaire-copy"></use>
+                        <use xlink:href="#iconlianjiechaoshi"></use>
                     </svg>
                     <span class="mydetail">超时未完成</span>
                     <svg class="icon middleicon youjiantou" aria-hidden="true">
                         <use xlink:href="#iconarr-right-blue"></use>
                     </svg>
                </li>
-               </router-link>-->
+               </router-link>
                <!-- 我的金币 
                <router-link to="/usermoney">
                <li>

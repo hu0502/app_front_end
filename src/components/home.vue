@@ -223,7 +223,7 @@ export default {
   
  mounted() {
       if(this.$store.state.user_id){
-      this.getRecommendTask();
+        this.getRecommendTask();
       }else{
         this.getAllTask();
       }

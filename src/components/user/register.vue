@@ -169,8 +169,8 @@ export default {
           var tel = {
             tel: that.RegisterForm.tel
           };
-          var url ="http://127.0.0.1:3000/api/users/sms"
-           //var url ="http://39.107.97.203:3000/api/users/sms"
+           //var url ="http://127.0.0.1:3000/api/users/sms"
+          var url ="http://39.107.97.203:3000/api/users/sms"
           var instance = axios.create({ headers: 
               {'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'}  
           });
@@ -200,6 +200,10 @@ export default {
                   }
                 } else {
                   console.log(res.data.msg);
+                   that.$message({
+                    message: res.data.msg,
+                    type: "error"
+                  });
                   return false;
                 }
               }
@@ -233,8 +237,8 @@ export default {
               department: _this.RegisterForm.department,
              // clientid:_this.RegisterForm.info.token
             };
-          var url = "http://127.0.0.1:3000/api/users/enroll";
-         // var url = "http://39.107.97.203:3000/api/users/enroll";
+           // var url = "http://127.0.0.1:3000/api/users/enroll";
+           var url = "http://39.107.97.203:3000/api/users/enroll";
           var instance = axios.create({ headers: 
               {'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'}
           });

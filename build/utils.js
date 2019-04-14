@@ -48,7 +48,7 @@ exports.cssLoaders = function (options) {
       return ExtractTextPlugin.extract({
         use: loaders,
         fallback: 'vue-style-loader'
-       //, publicPath:'../../' //删除此行就变回开发模式，现在是可以打包的状态
+       , publicPath:'../../' //删除此行就变回开发模式，现在是可以打包的状态
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
