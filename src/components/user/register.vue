@@ -2,7 +2,7 @@
   <div class="register">
     <!-- top -->
     <div class="registerbg">
-      <img src="../../../static/userbg.jpeg">
+      <img src="../../../static/userbg.jpg">
     </div>
     <!-- bottom -->
     <div class="register_div">
@@ -20,9 +20,9 @@
           <el-form-item prop="tel" class="reform">
             <el-input v-model="RegisterForm.tel" placeholder="请输入手机号："></el-input>
           </el-form-item>
-         <!--  <el-form-item prop="code" class="reform" id="validcode">
+          <el-form-item prop="code" class="reform" id="validcode">
             <el-input v-model="RegisterForm.code" placeholder="请输入验证码："></el-input>
-          </el-form-item> -->
+          </el-form-item>
           <el-form-item prop="user_name" class="reform">
             <el-input v-model="RegisterForm.user_name" placeholder="请输入用户名："></el-input>
           </el-form-item>
@@ -35,15 +35,15 @@
           <el-form-item prop="department" class="reform">
             <el-input v-model="RegisterForm.department" placeholder="请输入所在院系："></el-input>
           </el-form-item>
-        <!--   <el-button type="danger" @click="getCode()">获取验证码</el-button> -->
-
+          <el-button type="danger" @click="getCode()" v-show="show">获取验证码</el-button>
+          <el-button type="danger" v-show="!show" disabled="disabled">{{count}} s重新获取</el-button>
           <el-button
             type="primary"
             @click="submitForm('RegisterForm')"
             class="register_aaa"
             icon="el-icon-circle-check-outline"
           >注册</el-button>
-          <el-button icon="el-icon-refresh" @click="resetForm('RegisterForm')">重置</el-button>
+         <!--  <el-button icon="el-icon-refresh" @click="resetForm('RegisterForm')">重置</el-button> -->
         </el-form>
       </div>
       <!-- 跳转到登陆入口 -->
@@ -118,11 +118,17 @@ export default {
         return callback(new Error("验证码不能为空"));
       } else if (!codea.test(value)) {
         callback(new Error("验证码格式不正确"));
-      } else{
+      } else if (this.RegisterForm.code != this.RegisterForm.bcode){
+        callback(new Error("验证码不正确"));
+      }else{
         callback();
       }
     };
     return {
+      show : true,
+      flag : false,
+      count:'',
+      timer:null,
       RegisterForm: {
         user_name: "",
         password: "",
@@ -147,7 +153,7 @@ export default {
         department: [
           { required: true, message: "请输入所在院系！", trigger: "blur" }
         ],
-       // code: [{ required: false, validator: validateCode, trigger: "blur" }]
+        code: [{ validator: validateCode, trigger: "blur" }]
       },
      /*  rules2: {
         tel: [{ required: true, validator: validatePhone, trigger: "blur" }]
@@ -163,7 +169,8 @@ export default {
           var tel = {
             tel: that.RegisterForm.tel
           };
-          //var url ="http://127.0.0.1:3000/api/users/sms"
+          var url ="http://127.0.0.1:3000/api/users/sms"
+           //var url ="http://39.107.97.203:3000/api/users/sms"
           var instance = axios.create({ headers: 
               {'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'}  
           });
@@ -171,9 +178,25 @@ export default {
                if(res.status === 200){
                 if (res.data.status === 0) {
                   if(res.data.code != ''){
-                    console.log(res.data)
-                    thst.RegisterForm.bcode = res.data.code;
+                    console.log(res.data.code)
+                    that.RegisterForm.bcode = res.data.code;
                     console.log(that.RegisterForm.bcode)
+                    that.flag = true;
+                    //倒计时
+                    const TIME_COUNT = 60;
+                    if (!that.timer) {
+                      that.count = TIME_COUNT;
+                      that.show = false;
+                      that.timer = setInterval(() => {
+                      if (that.count > 0 && that.count <= TIME_COUNT) {
+                        that.count--;
+                        } else {
+                        that.show = true;
+                        clearInterval(that.timer);
+                        that.timer = null;
+                        }
+                      }, 1000)
+                      }
                   }
                 } else {
                   console.log(res.data.msg);
@@ -183,7 +206,7 @@ export default {
             })
           //});
        }else{
-         _this.$message({
+         that.$message({
             message: "请输入正确的手机号",
             type: "error"
           });
@@ -201,6 +224,7 @@ export default {
       var _this = this;
       _this.$refs[formName].validate(valid => {
         if (valid) {
+          if(_this.flag ==true){
             var userRegisterData = {
               user_name: _this.RegisterForm.user_name,
               password: _this.RegisterForm.password,
@@ -209,8 +233,8 @@ export default {
               department: _this.RegisterForm.department,
              // clientid:_this.RegisterForm.info.token
             };
-         // var url = "http://127.0.0.1:3000/api/users/enroll";
-          var url = "http://39.107.97.203:3000/api/users/enroll";
+          var url = "http://127.0.0.1:3000/api/users/enroll";
+         // var url = "http://39.107.97.203:3000/api/users/enroll";
           var instance = axios.create({ headers: 
               {'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'}
           });
@@ -241,6 +265,10 @@ export default {
               return false;
             }
           });
+
+          }else{
+            return false;
+          }
         } else {
           return false;
         }
@@ -281,12 +309,12 @@ export default {
   top: 30px;
   bottom: 0;
   min-height: 650px;
-  height: 650px;
+  height: 670px;
   min-width: 350px;
   width: 350px;
   background-color: #363636;
   opacity: 0.8;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 /* ChipDesign */

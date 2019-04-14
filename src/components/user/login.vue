@@ -2,7 +2,7 @@
     <div class="login">
         <!-- top -->
         <div class="loginbg">
-           <img src="../../../static/userbg.jpeg">
+           <img src="../../../static/userbg.jpg">
        </div>
        <!-- bottom -->
        <div class="login_div">
@@ -173,10 +173,10 @@ export default {
 /* ****************** */
 .login_div{
     margin: auto;
-    padding-top: 30px;
+    padding-top: 40px;
     left: 0;right: 0;top: 30px;bottom: 0;
     width: 350px;
-    height: 580px;
+    height: 620px;
     /* position: fixed; */
     background-color: #363636;
     opacity: .8;
