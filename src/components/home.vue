@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" >
     <!-- 底部选项卡 -->
     <mt-tabbar v-model="selected" fixed>
       <mt-tab-item id="1">
@@ -45,7 +45,7 @@
         <div>
           <!-- 普通任务 -->
           <span class="title">
-            <i slot="icon" class="iconfont iconrenwu"></i>
+            <i slot="icon" class="iconfont iconfabu"></i>
             <span>发布任务</span>
           </span>
           <ul class="workul">
@@ -77,13 +77,17 @@
           </ul>
           <!-- 加载最新任务列表 前两条-->
           <span class="title">
-            <i slot="icon" class="iconfont iconrenwu1"></i>
-            <span>最新任务</span>
+            <i slot="icon" class="iconfont iconiconfontdongtai"></i>
+            <span>最新动态</span>
           </span>
           <ul class="workul-lastest">
            <li v-for="(index,val) in tasklist" :key="val" >
               <p>
-                <span class="workul-username">{{index.title}}</span>
+                <span class="workul-username">
+                   <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#iconyoujiantou2"></use>
+                </svg>
+                  {{index.title}}</span>
                 <el-tag type="primary"  class="icontype1 label22" >{{index.label}}</el-tag>
                 <el-tag v-if="index.mission_statu===0" type="danger" class="icontype1 label33">未接单</el-tag>
                 <el-tag v-if="index.mission_statu===1" type="primary" class="icontype1 label33">进行中</el-tag>
@@ -96,7 +100,7 @@
               </p>
               <p class="workul-content1">
                 <span>雇主：{{index.master_name }}</span>
-                <span style="left: 85%;position: absolute;">浏览：{{index.times }}</span>
+                <span style="right: 5%;position: absolute;">浏览：{{index.times }}</span>
               </p>
               <p class="workul-content1">发布于：{{index.create_time}}</p>
               <p class="workul-content1">有效期：{{index.validtime}}</p>
@@ -145,7 +149,8 @@ export default {
   data() {
     return {
       selected: "1", //默认选中值1245
-      tasklist:[]
+      tasklist:[],
+      
     };
   },
   methods: {
@@ -162,7 +167,9 @@ export default {
                       that.tasklist[i].create_time = new Date(that.tasklist[i].create_time).format("yyyy-MM-dd hh:mm")
                       that.tasklist[i].validtime = new Date(that.tasklist[i].validtime).format("yyyy-MM-dd hh:mm")
                       if(that.tasklist[i].times == null) that.tasklist[i].times = 0;
+                     
                   }
+                  
                 }else{
                   that.$message({
                       message: res.data.msg,
@@ -194,7 +201,9 @@ export default {
                 that.tasklist[i].validtime
               ).format("yyyy-MM-dd hh:mm");
               if(that.tasklist[i].times == null) that.tasklist[i].times = 0;
+               
             }
+           
           } else {
             that.$message({
               message: res.data.msg,
@@ -271,15 +280,15 @@ ul,li {
 }
 /* 轮播图大小位置 */
 .mint-swipe {
-  height: 300px;
+  height: 240px;
   width: 100%;
 }
 .mint-swipe-items-wrap > div {
-  height: 300px;
+  height: 240px;
 }
 .ccc img {
   width: 100%;
-  height: 300px;
+  height: 240px;
 }
 /* 白点 */
 .mint-swipe-indicators {
@@ -306,11 +315,11 @@ ul,li {
   font-size: 15px;
 }
 /* 标题 */
-.iconrenwu,
+.iconfabu,
 .icontianjiayonghu,
-.iconrenwu1 {
-  color: #46b1b8;
-  font-size: 30px;
+.iconiconfontdongtai {
+  color: #409EFF;
+  font-size: 26px;
 }
 /* 单人任务 */
 .workul {
@@ -319,14 +328,13 @@ ul,li {
 }
 .workul li {
   display: inline-block;
-  padding: 0 20px;
   margin-bottom:10px;
+  padding:0 20px;
 }
 .workul li p:last-child {
-  margin-top: -5px;
   font-size: 14px;
   color: #545454;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 /* 任务类型icon */
 .worksingle,
@@ -358,7 +366,6 @@ ul,li {
 /* 任务列表 */
 .workul-lastest {
   border-bottom: 1px solid #eee;
-  padding: 10px 0;
   display: inline-block;
   width: 100%;
 }
@@ -385,21 +392,22 @@ ul,li {
 /* 用户名 */
 .workul-username {
   float: left;
-  padding-left: 5%;
+  padding-left: 6%;
   color: #000;
-  font-weight: bold;
+  font-family:'黑体';
   font-size: 16px;
 }
 /* 悬赏金币位置 */
 .workul-money {
-  left:87% !important;
+  right:6% !important;
   position: absolute;
 }
 /* 任务标题 */
 .workul-content1 {
-  padding-left: 5%;
+  padding-left: 6%;
   text-align: left;
   color: #545454;
+  font-size: 15px;
 }
 .aaaworklist{
    text-decoration: none;
@@ -414,9 +422,13 @@ ul,li {
   right: 100px;
 }
 .check{
-  position: absolute;
-  left: 87%;
-  margin-top: -50px;
+  /* position: absolute;
+  right:2% !important;
+  margin-top: -50px !important; */
+  position: relative;
+  float: right;
+  margin-right: 15px !important;
+  margin-top: -12% !important;
 }
 /* 最新任务类型标签部分 */
 .icontype1{

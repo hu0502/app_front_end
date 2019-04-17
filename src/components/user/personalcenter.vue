@@ -23,10 +23,10 @@
 </template>
 <style>
 .personal {
-  height: 75px !important;
+  height: 55px !important;
   width: 100%;
-  line-height: 75px !important;
-  font-size: 18px;
+  line-height: 55px !important;
+  font-size: 15px;
   background-color:#46b1b8 !important;
 }
 .personallink {

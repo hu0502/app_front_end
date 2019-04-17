@@ -48,10 +48,10 @@
   color: #fff;
 }
 .personal {
-  height: 75px;
+  height: 55px;
   width: 100%;
-  line-height: 70px;
-  font-size: 18px;
+  line-height: 50px;
+  font-size: 15px;
   background-color:#46b1b8 !important;
 }
 .update{

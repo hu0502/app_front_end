@@ -32,44 +32,40 @@ export default {
 
 <style>
 .headers{
-    height: 75px;
+    height: 55px;
     width: 100%;
     background-color: #46b1b8;
 }
 /* 重写搜索框 */
 .mint-searchbar{
     background-color:#46b1b8 !important;
-    width: 80%;
+    width: 75%;
     margin: auto;
     padding: 0;
-    height: 75px;
+    height: 55px;
 }
 .mint-searchbar-inner{
-    height: 35px;
+    height: 25px;
     opacity: .9;
     border: 1px solid #fff;
+    border-radius: 5px;
 }
 .mint-searchbar-cancel{
-    display: none;
+    color: #fff;
 }
 /* icon搜索 */
 .mint-searchbar-inner .mintui-search{
-    font-size: 22px !important;
-    color: #545454 !important;
-    position: absolute !important;
-    right: 5% !important;
-    top:5%;
+    font-size: 18px !important;
 }
 /* icon后的input */
 .mint-searchbar-core{
-    padding-left: 15px;
-    font-size: 16px;
-    padding-top: 2px;
-    line-height: 16px;
+    padding-left: 10px;
+    font-size: 15px;
+    line-height: 15px;
 }
 .mint-search{
-    height: 75px;
-    line-height: 75px;
+    height: 55px;
+    line-height: 55px;
 }
 
 </style>

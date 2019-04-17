@@ -149,7 +149,7 @@
 }
 /* 用户头像大小-未登录 */
 .topP1 img{
-    width: 110px;height: 110px;
+    width: 100px;height: 100px;
 }
 
 /* 下方内容列表 */
@@ -163,13 +163,12 @@
     border-bottom:1px solid #eee;
     padding: 12px 0;
     text-align: left;
-   
 }
 .middlelistUl li span{
     display: inline-block;
     height: 30px;
     line-height: 30px;
-     
+    font-size: 15px;
 }
 .middlelistUl p{
     margin-top: 10px;

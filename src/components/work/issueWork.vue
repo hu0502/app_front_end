@@ -151,6 +151,7 @@ export default {
                     contact: _this.LoginForm.contact,
                     master: _this.$store.state.user_id
                 }
+                console.log(taskData)
                // var url = 'http://127.0.0.1:3000/api/mission/issue'
                 var url = 'http://39.107.97.203:3000/api/mission/issue'
                 var instance = axios.create({ headers: 

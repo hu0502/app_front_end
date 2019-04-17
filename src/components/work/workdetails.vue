@@ -8,66 +8,103 @@
     <!-- <ul class="workul-workdetail" v-if="this.taskDetailForm.type===0">  -->
     <ul class="workul-workdetail" v-if="this.taskDetailForm.mission_order!=null">
       <li>
-        <p>类型：普通任务</p>
-        <p>任务编号：
+        <p>
+          <i class="iconfont iconbianhao"></i>
+          编号：
           <span>{{this.taskDetailForm.mission_order}}</span>
         </p>
-        <p>任务标题：
+        <p>
+          
+          <i class="iconfont iconrenwu1"></i>
+          标题：
           <span>{{this.taskDetailForm.title}}</span>
         </p>
-        <p>任务内容：
+        <p>
+          <i class="iconfont iconweibiaoti-_xianshi-xian"></i>
+          内容：
           <span>{{this.taskDetailForm.description}}</span>
         </p>
-        <p>将于何处完成：
+        <p>
+          <i class="iconfont iconicon-test2"></i>
+          将于何处完成：
           <span>{{this.taskDetailForm.location}}</span>
         </p>
-        <p>任务标签：
+        <p>
+          <i class="iconfont iconweibiaoti-_shuqian-xian"></i>
+          标签：
           <el-tag type="primary" class="label2">{{this.taskDetailForm.label}}</el-tag>
         </p>
-        <p v-if="this.taskDetailForm.mission_statu===0">任务状态：
+        <p v-if="this.taskDetailForm.mission_statu===0">
+          <i class="iconfont iconxitongzhuangtai"></i>
+          状态：
           <el-tag type="danger" class="label2">未接单</el-tag>
         </p>
-        <p v-if="this.taskDetailForm.mission_statu===1">任务状态：
+        <p v-if="this.taskDetailForm.mission_statu===1">
+           <i class="iconfont iconxitongzhuangtai"></i>
+          状态：
           <el-tag type="primary" class="label2">进行中</el-tag>
         </p>
-        <p v-if="this.taskDetailForm.mission_statu===2">任务状态：
+        <p v-if="this.taskDetailForm.mission_statu===2">
+           <i class="iconfont iconxitongzhuangtai"></i>
+          状态：
           <el-tag type="success" class="label2">已完成</el-tag>
         </p>
-        <p v-if="this.taskDetailForm.mission_statu===3">任务状态：
+        <p v-if="this.taskDetailForm.mission_statu===3">
+           <i class="iconfont iconxitongzhuangtai"></i>
+          状态：
           <el-tag type="danger" class="label2">已超时</el-tag>
         </p>
-        <p>雇主悬赏积分：
+        <p>
+           <i class="iconfont iconyonghuming"></i>
+          雇主：
+          <span style="color:#000;">{{this.taskDetailForm.master_name}}</span>
+        </p>
+        <p>
+          <i class="iconfont iconjifen"></i>
+          雇主悬赏积分：
           <i class="iconfont icontest aaaaicon"></i>
           <span>{{this.taskDetailForm.score}}</span>
         </p>
-        <p>雇主：
-          <span>{{this.taskDetailForm.master_name}}</span>
-        </p>
-        <p>联系QQ/微信：
-          <span>{{this.taskDetailForm.contact}}</span>
-        </p>
-        <p>发布于：
+        <p>
+          <i class="iconfont icontime"></i>
+          发布于：
           <span>{{this.taskDetailForm.create_time}}</span>
         </p>
-        <p>有效期至：
+        <p><i class="iconfont icontime"></i>
+          有效期至：
           <span>{{this.taskDetailForm.validtime}}</span>
         </p>
         <div v-if="this.slaveInfo===1 && this.overtime ==false">
-          <p>打工仔：
-            <span>{{this.taskDetailForm.slave_name}}</span>
+          <p>
+            <i class="iconfont iconyonghuming"></i>
+            打工仔：
+            <span style="color:#000;">{{this.taskDetailForm.slave_name}}</span>
           </p>
-          <p>接单时间：
+          <p>
+            <i class="iconfont icontime"></i>
+            接单时间：
             <span>{{this.taskDetailForm.accepttime}}</span>
           </p>
-          <p v-if="this.slaveInfo===1 && this.slaveInfoPlus===1">任务完成时间：
+           <p>
+             <i class="iconfont iconxiaoxi1"></i>
+             雇主联系QQ/微信：
+            <span>{{this.taskDetailForm.contact}}</span>
+          </p>
+          <p v-if="this.slaveInfo===1 && this.slaveInfoPlus===1">
+            <i class="iconfont icontime"></i>
+            任务完成时间：
             <span>{{this.taskDetailForm.end_time}}</span>
           </p>
         </div>
         <div v-if="this.slaveInfo===1 && this.overtime == true">
-          <p>打工仔：
+          <p>
+            <i class="iconfont iconyonghuming"></i>
+            打工仔：
             <span>{{this.taskDetailForm.slave_name}}</span>
           </p>
-          <p>接单时间：
+          <p>
+            <i class="iconfont icontime"></i>
+            接单时间：
             <span>{{this.taskDetailForm.accepttime}}</span>
           </p>
         </div>
@@ -177,16 +214,6 @@ li {
 .workdetails li {
   text-align: left;
 }
-.mint-header {
-  background-color: #46b1b8;
-  height: 65px;
-  font-size: 16px;
-  line-height: 65px;
-}
-.mint-header-title {
-  line-height: 65px;
-  margin: 0;
-}
 .aaaworkdetails {
   text-decoration: none;
   color: #fff;
@@ -197,12 +224,12 @@ li {
 }
 .mint-header {
   background-color: #46b1b8;
-  height: 65px;
-  font-size: 16px;
-  line-height: 65px;
+  height: 55px;
+  font-size: 15px;
+  line-height: 55px;
 }
 .mint-header-title {
-  line-height: 65px;
+  line-height: 55px;
   margin: 0;
 }
 /* 任务列表 */
@@ -212,15 +239,17 @@ li {
   width: 100%;
 }
 .workul-workdetail li p {
-  font-size: 16px;
+  font-size: 15px;
   color: #545454;
   padding: 10px 30px;
+  font-size: 15px;
+  font-family: '黑体';
 }
 .missBtn {
   text-align: center;
 }
 .missBtn button {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .aaaaicon {
   color: #fae41c;
@@ -358,7 +387,7 @@ export default {
         if (res.status === 200) {
           if (res.data.status === 0) {
             var taskApi = res.data.data;
-            //console.log(taskApi);
+            //console.log(taskApi.contact);
             that.taskDetailForm.mission_order = taskApi.mission_order;
             that.taskDetailForm.title = taskApi.title;
             that.taskDetailForm.description = taskApi.description;
