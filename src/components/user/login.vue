@@ -149,15 +149,16 @@ export default {
     text-decoration: none;
 }
 .topImg{
-    width: 100px;height: 100px;
+    width: 80px;
+    height: 80px;
 }
 .loginbg{
     text-align: left;
 }
 .loginbg img{
     position: fixed;
-    min-width: 100%;  
-    min-height: 100%;
+    width: 100%;  
+    height: 100%;
 }
 
 .topP11{
@@ -174,10 +175,11 @@ export default {
 .login_div{
     margin: auto;
     padding-top: 40px;
-    left: 0;right: 0;top: 30px;bottom: 0;
+    left: 0;right: 0;top: 0;bottom: 0;
     width: 350px;
+    min-width: 320px;
     height: 620px;
-    /* position: fixed; */
+    position: fixed;
     background-color: #363636;
     opacity: .8;
 }

@@ -301,8 +301,8 @@ export default {
 }
 .registerbg img {
   position: fixed;
-  min-width: 100%;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 /* ****************** */
@@ -310,21 +310,22 @@ export default {
   margin: auto;
   left: 0;
   right: 0;
-  top: 30px;
+  top: 0;
   bottom: 0;
   min-height: 650px;
   height: 670px;
-  min-width: 350px;
+  min-width: 320px;
   width: 350px;
   background-color: #363636;
   opacity: 0.8;
   padding-top: 40px;
+  position: fixed;
 }
 
 /* ChipDesign */
 .register_title {
   border: 1px solid #fff;
-  padding: 10px 0;
+  padding: 5px 0;
   background-color: #fff;
 }
 .register_title span {

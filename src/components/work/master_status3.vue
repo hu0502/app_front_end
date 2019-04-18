@@ -24,7 +24,7 @@
         </p>
         <p class="worklist-content">
           <span>雇主：{{index.master_name }}</span>
-          <span style="float:right;">浏览：{{index.times }}</span>
+          <span style="right: 5%;position: absolute;">浏览：{{index.times }}</span>
         </p>
         <p class="worklist-content">发布于：{{index.create_time}}</p>
         <p class="worklist-content">有效期：{{index.validtime}}</p>
@@ -49,7 +49,7 @@
         :total="this.count"
       >
       </el-pagination>
-     
+      <router-link to="/"><el-button type="primary" class="btn_list" >返回首页</el-button></router-link>
     </ul>
     <ul v-else-if="this.flag==false" class="workul-worklist">
       <img src="../../../static/nothing.png" class="nothing">

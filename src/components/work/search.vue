@@ -1,17 +1,18 @@
 <template>
-  <div class="master_status2">
-    <mt-header title="被完成的任务">
+  <div class="search" >
+    <mt-header title="相关任务">
       <mt-button icon="back" slot="left" @click="$router.back(-1)">返回</mt-button>
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
-     <ul class="workul-worklist" v-if="this.flag == true">
+    <ul class="workul-worklist" v-if="this.flag == true">
       <li v-for="(index,val) in tasklist" :key="val">
         <p>
           <span class="worklist-username">
-             <svg class="icon" aria-hidden="true">
+          <svg class="icon" aria-hidden="true">
               <use xlink:href="#iconyoujiantou2"></use>
           </svg>
-            {{index.title}}</span>
+            {{index.title}}
+          </span>
           <el-tag type="primary" class="icontype label2">{{index.label}}</el-tag>
           <el-tag v-if="index.mission_statu===0" type="danger" class="icontype label3">未接单</el-tag>
           <el-tag v-if="index.mission_statu===1" type="primary" class="icontype label3">进行中</el-tag>
@@ -40,35 +41,32 @@
           <el-button icon="el-icon-search" circle type="danger" class="check"></el-button>
         </router-link>
       </li>
-       <el-pagination
+         <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-size="pagesize"
          layout="total, prev, pager, next"
         :total="this.count"
+        v-if="this.count!=0"
       >
       </el-pagination>
-     <router-link to="/"><el-button type="primary" class="btn_list" >返回首页</el-button></router-link>
+      
     </ul>
-     <ul v-else-if="this.flag==false" class="workul-worklist">
+    <ul v-if="this.count ===0 ||this.flag == false" class="workul-worklist">
       <img src="../../../static/nothing.png" class="nothing">
-      <router-link to="/"><el-button type="primary" class="btn_list" >返回首页</el-button></router-link>
+       <router-link to="/"><el-button type="primary" class="btn_list" >返回首页</el-button></router-link>
     </ul>
   </div>
 </template>
 
 <style>
-* {
-  padding: 0;
-  margin: 0;
-}
 .nothing{
   width: 100%;
   height: 100%;
 }
 .mint-header {
-  background-color:#46b1b8 !important;
+  background-color: #46b1b8 !important;
   height: 55px;
   font-size: 15px;
   line-height: 55px;
@@ -77,8 +75,13 @@
   line-height: 55px;
   margin: 0;
 }
+.aaalistlink {
+  text-decoration: none;
+  color: #666666;
+}
 /* 任务列表 */
 .workul-worklist {
+  padding: 10px 0;
   display: inline-block;
   width: 100%;
 }
@@ -111,7 +114,7 @@
 }
 /* 悬赏金币位置 */
 .worklist-money {
-   position: relative;
+  position: relative;
   float: right;
   margin-right: -110px;
 }
@@ -146,19 +149,11 @@
 .icontype {
   position: relative;
   float: right;
-  right: 70px;
+  right: 60px;
   margin-top: 3px;
   margin-right: 10px;
 }
-.aaalistlink {
-  text-decoration: none;
-  color: #666666;
-}
-.usersWork-aaalistlink {
-  text-decoration: none;
-  color: #fff;
-}
-.btn_list{
+.btn_list {
   margin-top: 15px;
 }
 /* 分页css */
@@ -172,49 +167,46 @@
 </style>
 
 <script>
+import headers from "../headers";
 import axios from "axios";
 import qs from "qs";
+
 export default {
-  name:'master_status2',
+  name:'search',
   data() {
     return {
       flag:true,
-      tasklist: [],
       count:0,
+      tasklist: [],
       currentPage: 1, //初始页
       pagesize: 4, //每页的数据
     };
   },
   methods: {
-     // 初始页currentPage、初始每页数据数pagesize和数据data
+    // 初始页currentPage、初始每页数据数pagesize和数据data
         handleSizeChange: function (size) {
             this.pagesize = size;
-            this.getUsersWork()
+            this.getAllTask()
             //console.log(this.pagesize)  //每页下拉显示数据
         },
         handleCurrentChange: function(currentPage){
             this.currentPage = currentPage;
             //console.log(this.currentPage)  //点击第几页
-            this.getUsersWork()
+            this.getAllTask()
         },
-    //获取当前用户发布的所有任务
-    getUsersWork: function() {
+       
+    getAllTask() {
       var that = this;
-      var data = {
-        user_id: that.$store.state.user_id
-      };
-     // var url = "http://127.0.0.1:3000/api/mission/master_status2";
-      var url = "http://39.107.97.203:3000/api/mission/master_status2";
-      var instance = axios.create({
-        headers: {
-          "content-type": "application/x-www-form-urlencoded;charset=UTF-8"
-        }
-      });
-      instance.post(url, qs.stringify(data)).then(res => {
+      var key = {
+        keywords : that.$route.params.words
+      }
+     // console.log(key)
+      var url = "http://39.107.97.203:3000/api/mission/search";
+      axios.post(url,qs.stringify(key)).then(res => {
         if (res.status === 200) {
           if (res.data.status === 0) {
            // that.tasklist = res.data.data.reverse();
-            that.count = res.data.data.length;
+           that.count = res.data.data.length;
             that.tasklist=res.data.data.reverse().slice((that.currentPage-1)*that.pagesize,that.currentPage*that.pagesize)
             for (let i = 0; i < that.tasklist.length; i++) {
               that.tasklist[i].create_time = new Date(
@@ -223,10 +215,10 @@ export default {
               that.tasklist[i].validtime = new Date(
                 that.tasklist[i].validtime
               ).format("yyyy-MM-dd hh:mm");
-               if(that.tasklist[i].times == null) that.tasklist[i].times = 0;
+              if (that.tasklist[i].times == null) that.tasklist[i].times = 0;
             }
           } else {
-           /*  that.$message({
+            /* that.$message({
               message: res.data.msg,
               type: "error"
             }); */
@@ -243,9 +235,11 @@ export default {
       });
     }
   },
-
+  components: {
+    "v-headers": headers
+  },
   mounted() {
-    this.getUsersWork();
+    this.getAllTask();
   }
 };
 </script>

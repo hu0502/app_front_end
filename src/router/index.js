@@ -23,6 +23,7 @@ import master_status3 from '@/components/work/master_status3'
 import slave_status1 from '@/components/work/slave_status1'
 import slave_status2 from '@/components/work/slave_status2'
 import slave_status3 from '@/components/work/slave_status3'
+import search from '@/components/work/search'
 Vue.use(Router)
 
 const router = new Router({
@@ -118,7 +119,12 @@ const router = new Router({
         },
         component: issueWork
     },
-    
+    //任务搜索
+    {
+        path: '/search',
+        name: 'search',
+        component: search
+    },
    /* ******** 雇主 ******** */
     {
         path: '/master_status0',

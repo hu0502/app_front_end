@@ -1,19 +1,12 @@
 <template>
     <div class="headers">
-        <!-- <mt-header> -->
-           <!--  <img src="../../static/logo(white).png" class="homelogo"> -->
-            <!-- <router-link to="/personalcenter">
-                <i class="iconfont iconwode1 icon-mine"></i>
-            </router-link> -->
-            <mt-search v-model="value" placeholder="搜索任务">
-                <!-- <mt-cell
-                    v-for="item in result"
-                    :key="item"
-                    :title="item.title"
-                    :value="item.value">
-                </mt-cell> -->
-            </mt-search>
-        <!-- </mt-header> -->
+        <form action="" onsubmit="return false;">
+            <mt-search 
+            v-model="value" 
+            placeholder="搜索任务" 
+            @keyup.native.enter="search(value)"
+            ></mt-search>
+        </form>
     </div>
 </template>
 
@@ -25,6 +18,33 @@ export default {
     data() {
         return {
             value:''
+        }
+    },
+    methods: {
+        search(value){
+            console.log(value)
+            /*  
+                一、
+            //var id = 1;
+            //this.$router.push({path:'/selectCate',query:{userid:id}});
+            //收：var id = parseInt(this.$route.query.userid); 
+            
+            */
+
+            /* 
+                这里使用了第二种方式
+                二、
+                发：var id = 1;
+                    this.$router.push({name:'selectCate',params:{userid:id}});
+                收：var id = this.$route.params.userid;
+            */
+            var _this = this;
+            _this.$router.push({
+                name:'search',
+                params:{
+                    words : value
+                }
+            })
         }
     },
 }
