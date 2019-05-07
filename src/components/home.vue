@@ -20,7 +20,6 @@
         <span class="aaa">我的</span>
       </mt-tab-item>
     </mt-tabbar>
-
     <!-- 内容区 -->
     <mt-tab-container v-model="selected">
       <!-- 首页 -->
@@ -122,13 +121,11 @@
         <v-headers></v-headers>
         <v-partone></v-partone>
       </mt-tab-container-item>
-
       <!-- 消息 -->
       <mt-tab-container-item id="4">
         <v-headers></v-headers>
         <v-message></v-message>
       </mt-tab-container-item>
-
       <!-- 我的 -->
       <mt-tab-container-item id="5">
         <v-user></v-user>
@@ -136,7 +133,6 @@
     </mt-tab-container>
   </div>
 </template>
-
 <script>
 import headers from "./headers";
 import partone from "./square/partone";
@@ -150,7 +146,6 @@ export default {
     return {
       selected: "1", //默认选中值1245
       tasklist:[],
-      
     };
   },
   methods: {
@@ -221,13 +216,11 @@ export default {
       });
     },
   },
-   
   components: {
-    "v-headers": headers,
+    "v-headers": headers,//【顶部】
     "v-partone": partone, //【广场】
     "v-user": user, //【我的】
     "v-message": message, //【消息】
-   
   },
   
  mounted() {
@@ -239,8 +232,6 @@ export default {
     }
 };
 </script>
-
-
 <style scoped>
 ul,li {
   list-style: none;

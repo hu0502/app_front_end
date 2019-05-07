@@ -71,7 +71,7 @@ export default {
     border-radius: 5px;
 }
 .mint-searchbar-cancel{
-    color: #fff;
+    color: #fff !important;
 }
 /* icon搜索 */
 .mint-searchbar-inner .mintui-search{

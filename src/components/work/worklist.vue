@@ -18,14 +18,16 @@
           <el-tag v-if="index.mission_statu===1" type="primary" class="icontype label3">进行中</el-tag>
           <el-tag v-if="index.mission_statu===2" type="success" class="icontype label3">已完成</el-tag>
           <el-tag v-if="index.mission_statu===3" type="danger" class="icontype label3">已超时</el-tag>
-          <span class="worklist-money">
-            <i class="iconfont icontest"></i>
-            <span>{{index.score}}</span>
-          </span>
+        </p>
+        <p class="worklist-money right">
+            <span><i class="iconfont icontest"></i>
+            {{index.score}}</span>
+        </p>
+        <p class="worklist-times right">
+           <span>浏览：{{index.times }}</span>
         </p>
         <p class="worklist-content">
           <span>雇主：{{index.master_name }}</span>
-          <span style="right: 5%;position: absolute;">浏览：{{index.times }}</span>
         </p>
         <p class="worklist-content">发布于：{{index.create_time}}</p>
         <p class="worklist-content">有效期：{{index.validtime}}</p>
@@ -36,29 +38,21 @@
                     mission_id: index.mission_id
                 }
                 }"
-          class="aaalistlink"
-        >
+          class="aaalistlink">
           <el-button icon="el-icon-search" circle type="danger" class="check"></el-button>
         </router-link>
       </li>
-         <el-pagination
+      <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-size="pagesize"
          layout="total, prev, pager, next"
-        :total="this.count"
-      >
+        :total="this.count">
       </el-pagination>
-     
-     
-     <!--  <router-link to="/">
-        <el-button type="primary" class="btn_list">返回首页</el-button>
-      </router-link> -->
     </ul>
   </div>
 </template>
-
 <style>
 .aaalistlink {
   text-decoration: none;
@@ -107,12 +101,22 @@
   font-family: "黑体";
   font-size: 16px;
 }
+.right{
+  position: relative !important;
+  float: right !important;
+}
 /* 悬赏金币位置 */
 .worklist-money {
-  position: relative;
-  float: right;
-  margin-right: -110px;
+  margin-top: -40px !important;
+  margin-right: 20px !important;
 }
+/* 浏览次数 */
+.worklist-times{
+  margin-right: 20px !important;
+  color: #545454;
+  font-size: 15px;
+}
+
 /* 任务标题 */
 .worklist-content {
   padding-left: 6%;
@@ -160,12 +164,10 @@
   margin-top: 10px !important;
 }
 </style>
-
 <script>
 import headers from "../headers";
 import axios from "axios";
 import qs from "qs";
-
 export default {
   data() {
     return {
@@ -179,13 +181,22 @@ export default {
     // 初始页currentPage、初始每页数据数pagesize和数据data
         handleSizeChange: function (size) {
             this.pagesize = size;
-            this.getRecommendTask()
+            //this.getRecommendTask()
+             if (this.$store.state.user_id) {
+              this.getRecommendTask();
+            } else {
+              this.getAllTask();
+            }
             //console.log(this.pagesize)  //每页下拉显示数据
         },
         handleCurrentChange: function(currentPage){
             this.currentPage = currentPage;
             //console.log(this.currentPage)  //点击第几页
-            this.getRecommendTask()
+           if (this.$store.state.user_id) {
+              this.getRecommendTask();
+            } else {
+              this.getAllTask();
+            }
         },
        
     getAllTask() {
@@ -195,7 +206,9 @@ export default {
       axios.get(url).then(res => {
         if (res.status === 200) {
           if (res.data.status === 0) {
-            that.tasklist = res.data.data.reverse();
+            //that.tasklist = res.data.data.reverse();
+             that.count = res.data.data.length;
+            that.tasklist=res.data.data.reverse().slice((that.currentPage-1)*that.pagesize,that.currentPage*that.pagesize)
             for (let i = 0; i < that.tasklist.length; i++) {
               that.tasklist[i].create_time = new Date(
                 that.tasklist[i].create_time

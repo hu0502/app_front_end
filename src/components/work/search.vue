@@ -18,14 +18,19 @@
           <el-tag v-if="index.mission_statu===1" type="primary" class="icontype label3">进行中</el-tag>
           <el-tag v-if="index.mission_statu===2" type="success" class="icontype label3">已完成</el-tag>
           <el-tag v-if="index.mission_statu===3" type="danger" class="icontype label3">已超时</el-tag>
-          <span class="worklist-money">
-            <i class="iconfont icontest"></i>
-            <span>{{index.score}}</span>
-          </span>
+          
         </p>
+
+         <p class="worklist-money right">
+            <span><i class="iconfont icontest"></i>
+            {{index.score}}</span>
+        </p>
+        <p class="worklist-times right">
+           <span>浏览：{{index.times }}</span>
+        </p>
+        
         <p class="worklist-content">
           <span>雇主：{{index.master_name }}</span>
-          <span style="right: 5%;position: absolute;">浏览：{{index.times }}</span>
         </p>
         <p class="worklist-content">发布于：{{index.create_time}}</p>
         <p class="worklist-content">有效期：{{index.validtime}}</p>
@@ -112,11 +117,20 @@
   font-family: "黑体";
   font-size: 16px;
 }
+.right{
+  position: relative !important;
+  float: right !important;
+}
 /* 悬赏金币位置 */
 .worklist-money {
-  position: relative;
-  float: right;
-  margin-right: -110px;
+  margin-top: -40px !important;
+  margin-right: 20px !important;
+}
+/* 浏览次数 */
+.worklist-times{
+  margin-right: 20px !important;
+  color: #545454;
+  font-size: 15px;
 }
 /* 任务标题 */
 .worklist-content {
