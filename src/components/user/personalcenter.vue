@@ -117,13 +117,7 @@ export default {
               }
               if(userInfoApi.sex == null){
                 that.userInfo.sex = "未填写"
-              }else if(userInfoApi.sex === 0){
-                that.userInfo.sex = "男"
-              }else{
-                that.userInfo.sex = "女"
               }
-             
-             
             } else {
               that.$message({
                 message: res.data.msg,

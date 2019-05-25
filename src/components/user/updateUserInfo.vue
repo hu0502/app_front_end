@@ -145,12 +145,12 @@ export default {
           if (res.status === 200) {
             if (res.data.status === 0) {
               var userInfoApi = res.data.data;
-              
               that.updateForm.user_name = userInfoApi.user_name;
               that.updateForm.tel = userInfoApi.tel;
               that.updateForm.department = userInfoApi.department;
               that.updateForm.u_class = userInfoApi.u_class;
               that.updateForm.sex = userInfoApi.sex;
+              console.log(that.updateForm.sex)
               if(that.updateForm.u_class == null){
                 that.updateForm.u_class = "未填写"
               }
@@ -201,10 +201,10 @@ export default {
                   type: "success"
                 });
                 //_this.$router.push({ name: "personalcenter" });
-                //_this.$router.go(0);
-                 setTimeout(() => {
+                _this.$router.go(-1);
+                /*  setTimeout(() => {
                   _this.$router.push({ name: "personalcenter" });
-                  }, 1000);
+                  }, 1000); */
               } 
               else {
                 _this.$message({
@@ -229,7 +229,8 @@ export default {
     }
     },
     mounted() {
-        this.updateInfo()
+      //进入页面时查看个人信息
+      this.updateInfo()
     },
 }
 </script>
