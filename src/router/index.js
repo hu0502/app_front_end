@@ -115,7 +115,7 @@ const router = new Router({
         path: '/issueWork',
         name: 'issueWork',
         meta: {
-            requireAuth: true //进入发布任务页面时需要先登陆
+            requireAuth: true
         },
         component: issueWork
     },
@@ -204,16 +204,9 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
     const user_id = store.state.user_id
     if (to.meta.requireAuth) {
-        if (user_id) {
-            next()
-        } else {
-            next({
-                path: '/login'
-            })
-        }
-    } else {
-        next()
-    }
+        if (user_id) { next()
+        } else {next({ path: '/login'})}
+    } else { next()}
 })
 
 export default router

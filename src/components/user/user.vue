@@ -8,10 +8,6 @@
                 <img src="../../../static/userlogo.png" alt="" class="topImg" />
             </p>
             <p v-if="!this.$store.state.user_name">
-                <!--  <span>welcome!去
-                    <router-link to="/login" class="linkaaa">登陆 </router-link>&nbsp;/
-                    <router-link to="/register" class="linkaaa">注册</router-link>
-                </span> -->
                 <el-Button type="primary" class="btn" @click="toLogin()">登陆</el-Button>
                 <el-Button type="primary" class="btn" @click="toEnroll()">注册</el-Button>
             </p> 

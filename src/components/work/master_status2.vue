@@ -8,9 +8,7 @@
       <li v-for="(index,val) in tasklist" :key="val">
         <p>
           <span class="worklist-username">
-             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#iconyoujiantou2"></use>
-          </svg>
+             <svg class="icon" aria-hidden="true"><use xlink:href="#iconyoujiantou2"></use></svg>
             {{index.title}}</span>
           <el-tag type="primary" class="icontype label2">{{index.label}}</el-tag>
           <el-tag v-if="index.mission_statu===0" type="danger" class="icontype label3">未接单</el-tag>
@@ -18,42 +16,22 @@
           <el-tag v-if="index.mission_statu===2" type="success" class="icontype label3">已完成</el-tag>
           <el-tag v-if="index.mission_statu===3" type="danger" class="icontype label3">已超时</el-tag>
         </p>
-        
-        <p class="worklist-money right">
-            <span><i class="iconfont icontest"></i>
-            {{index.score}}</span>
-        </p>
-        <p class="worklist-times right">
-           <span>浏览：{{index.times }}</span>
-        </p>
-
-        <p class="worklist-content">
-          <span>雇主：{{index.master_name }}</span>
-        </p>
+        <p class="worklist-money right"><span><i class="iconfont icontest"></i>{{index.score}}</span></p>
+        <p class="worklist-times right"> <span>浏览：{{index.times }}</span></p>
+        <p class="worklist-content"><span>雇主：{{index.master_name }}</span></p>
         <p class="worklist-content">发布于：{{index.create_time}}</p>
         <p class="worklist-content">有效期：{{index.validtime}}</p>
-        <router-link
-          :to="{
-                path: '/workdetails',
-                query: {
-                    mission_id: index.mission_id
-                }
-                }"
-          class="aaalistlink"
-        >
+        <router-link :to="{path: '/workdetails',query: {mission_id: index.mission_id}}" class="aaalistlink">
           <el-button icon="el-icon-search" circle type="danger" class="check"></el-button>
         </router-link>
       </li>
-       <el-pagination
+      <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
-        :page-size="pagesize"
-         layout="total, prev, pager, next"
-        :total="this.count"
-      >
+        :page-size="pagesize" layout="total, prev, pager, next"
+        :total="this.count">
       </el-pagination>
-    
     </ul>
      <ul v-else-if="this.flag==false" class="workul-worklist">
       <img src="../../../static/nothing.png" class="nothing">

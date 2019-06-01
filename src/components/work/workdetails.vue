@@ -387,7 +387,6 @@ export default {
         if (res.status === 200) {
           if (res.data.status === 0) {
             var taskApi = res.data.data;
-            //console.log(taskApi.contact);
             that.taskDetailForm.mission_order = taskApi.mission_order;
             that.taskDetailForm.title = taskApi.title;
             that.taskDetailForm.description = taskApi.description;

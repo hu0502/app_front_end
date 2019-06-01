@@ -29,14 +29,11 @@ export default {
             //this.$router.push({path:'/selectCate',query:{userid:id}});
             //收：var id = parseInt(this.$route.query.userid); 
             
-            */
-
-            /* 
-                这里使用了第二种方式
-                二、
-                发：var id = 1;
-                    this.$router.push({name:'selectCate',params:{userid:id}});
-                收：var id = this.$route.params.userid;
+            这里使用了第二种方式
+            二、
+            发：var id = 1;
+                this.$router.push({name:'selectCate',params:{userid:id}});
+            收：var id = this.$route.params.userid;
             */
             var _this = this;
             _this.$router.push({

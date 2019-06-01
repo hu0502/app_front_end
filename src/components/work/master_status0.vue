@@ -43,7 +43,7 @@
           <el-button icon="el-icon-search" circle type="danger" class="check"></el-button>
         </router-link>
       </li>
-       <el-pagination
+      <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
@@ -51,7 +51,6 @@
          layout="total, prev, pager, next"
         :total="this.count"
       >
-      
       </el-pagination>
       
        
@@ -207,11 +206,9 @@ export default {
         handleSizeChange: function (size) {
             this.pagesize = size;
             this.getUsersWork()
-            //console.log(this.pagesize)  //每页下拉显示数据
         },
         handleCurrentChange: function(currentPage){
             this.currentPage = currentPage;
-            //console.log(this.currentPage)  //点击第几页
             this.getUsersWork()
         },
     //获取当前用户发布的所有任务
