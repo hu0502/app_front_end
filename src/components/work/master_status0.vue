@@ -204,7 +204,7 @@ export default {
   methods: {
      // 初始页currentPage、初始每页数据数pagesize和数据data
         handleSizeChange: function (size) {
-            this.pagesize = size;,.,
+            this.pagesize = size;
             this.getUsersWork()
         },
         handleCurrentChange: function(currentPage){
