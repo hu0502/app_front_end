@@ -137,7 +137,7 @@ export default {
         department: "",
         code: "", //验证码
         bcode :"" ,//后端获取的验证码
-        //info : plus.push.getClientInfo()
+        info : plus.push.getClientInfo()
       },
       RegisterRules: {
         user_name: [
@@ -178,9 +178,9 @@ export default {
                if(res.status === 200){
                 if (res.data.status === 0) {
                   if(res.data.code != ''){
-                    console.log(res.data.code)
+                   // console.log(res.data.code)
                     that.RegisterForm.bcode = res.data.code;
-                    console.log(that.RegisterForm.bcode)
+                    //console.log(that.RegisterForm.bcode)
                     that.flag = true;
                     //倒计时
                     const TIME_COUNT = 60;
@@ -199,7 +199,7 @@ export default {
                       }
                   }
                 } else {
-                  console.log(res.data.msg);
+                 // console.log(res.data.msg);
                    that.$message({
                     message: res.data.msg,
                     type: "error"
@@ -235,7 +235,7 @@ export default {
               tel: _this.RegisterForm.tel,
               //code: _this.RegisterForm.code,
               department: _this.RegisterForm.department,
-             // clientid:_this.RegisterForm.info.token
+              clientid:_this.RegisterForm.info.token
             };
            // var url = "http://127.0.0.1:3000/api/users/enroll";
            var url = "http://39.107.97.203:3000/api/users/enroll";
